@@ -1,3 +1,5 @@
 .main{
-    background-image: url('./Assets/Background.jpg');
+    background-image: url('./Assets/back.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
