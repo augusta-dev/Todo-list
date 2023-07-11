@@ -2,4 +2,5 @@
     background-image: url('./Assets/back.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 100vw;
 }
