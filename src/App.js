@@ -6,9 +6,8 @@ function App() {
     return (
         <div className='main h-screen w-screen'>
             <img src="./Assets/Background.jpg" alt="" />
-            <ComplexNavbar>
-                
-            </ComplexNavbar>
+            <ComplexNavbar />
+            
         </div>
     )
 }
