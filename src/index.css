@@ -8,7 +8,7 @@
         src: url('/src/Assets/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf');
     }
     @font-face {
-        font-family: Cormorant Garamond;
+        font-family: 'Cormorant Garamond';
         src: url('/src/Assets/Cormorant_Garamond/CormorantGaramond-Regular.ttf');
     }
     @font-face {
