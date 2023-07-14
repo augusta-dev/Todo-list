@@ -2,7 +2,7 @@
 const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
-	content: ["./src/**/*.{js,jsx,ts,tsx}"],
+	content: ["./src/**/*.{js,jsx,ts,tsx,html,ttf}"],
 	theme: {
 		extend: {
 			colors: {
@@ -18,10 +18,16 @@ module.exports = withMT({
 				red: {
 					900: "#EF233C",
 				},
-        navy: {
-          900: "#2B2D42",
-        }
+				navy: {
+					900: "#2B2D42",
+				},
 			},
+			fontFamily: {
+				arimo: "Arimo",
+				// roboto: "Roboto Slab",
+				// cormorant: "Cormorant Garamond",
+				// custom: ['arimo', 'Helvetica', 'Arial', 'sans-serif'],
+			}
 		},
 	},
 	plugins: [],
