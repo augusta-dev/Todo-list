@@ -3,6 +3,11 @@ import ComplexNavbar from "./Components/ComplexNavbar";
 import Sidebar from "./Components/Sidebar";
 
 function App() {
+	const sidebarItems = [
+		{
+			title: "",
+		},
+	];
 	return (
 		<div className="main h-screen w-screen">
 			<img
@@ -11,10 +16,8 @@ function App() {
 			/>
 			<ComplexNavbar />
 			<div className="flex w-screen flex-wrap content-center justify-center">
-				<div className="container">
-					<Sidebar />
-					<div className="w-3/4"></div>
-				</div>
+				<Sidebar />
+				<div className="w-3/4"></div>
 			</div>
 		</div>
 	);

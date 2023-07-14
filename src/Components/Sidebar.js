@@ -1,26 +1,36 @@
 import { Typography } from "@material-tailwind/react";
 import "./Sidebar.css";
+import TaskClasses from "./TaskClasses";
+import MomentaryTask from "./MomentaryTask";
 const Sidebar = () => {
-	return (
-		<div className="w-1/4 lg:w-1/6 bg-cyan-100 h-screen relative ">
-			<div className="w-100 flex flex-wrap">
-				<div className="w-9 m-l">
-					<svg className="fill-yellow-900 h-5">
-						<circle
-							cx="10"
-							cy="10"
-							r="10"
-						/>
-					</svg>
-				</div>
+	const sideBarItems = [
+		{
+			title: "All Tasks",
+			color: "fill-yellow-900",
+		},
+		{
+			title: "For Today",
+			color: "fill-navy-900",
+		},
+		{
+			title: "Priorities",
+			color: "fill-red-900",
+		},
+		{
+			title: "Completed",
+			color: "fill-green-900",
+		},
+	];
 
-				<Typography
-					variant="h6"
-					className="font-arimo w-auto"
-				>
-					Material Tailwind
-				</Typography>
-			</div>
+	return (
+		<div className="w-1/4 lg:w-1/6 bg-cyan-100 h-screen relative pl-8 pt-14">
+			{sideBarItems.map((sideBarItem) => (
+				<TaskClasses
+					title={sideBarItem.title}
+					color={sideBarItem.color}
+				/>
+			))}
+			<MomentaryTask />
 		</div>
 	);
 };
