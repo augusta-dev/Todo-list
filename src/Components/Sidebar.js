@@ -3,9 +3,9 @@ import "./Sidebar.css";
 const Sidebar = () => {
 	return (
 		<div className="w-1/4 lg:w-1/6 bg-cyan-100 h-screen relative ">
-			<div className="w-100">
-				<div className="w-3">
-					<svg className="fill-">
+			<div className="w-100 flex flex-wrap">
+				<div className="w-9 m-l">
+					<svg className="fill-yellow-900 h-5">
 						<circle
 							cx="10"
 							cy="10"
