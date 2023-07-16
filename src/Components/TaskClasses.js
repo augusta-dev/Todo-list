@@ -13,9 +13,9 @@ const TaskClasses = (props) => {
 			</div>
 
 			<div className="w-auto">
-				<p className="font-arimo text-lg leading-5">
+				<a className="font-arimo text-lg leading-5">
 					{props.title}
-				</p>
+				</a>
 			</div>
 		</div>
 	);

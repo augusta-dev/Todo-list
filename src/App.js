@@ -17,7 +17,7 @@ function App() {
 			<ComplexNavbar />
 			<div className="flex w-screen flex-wrap content-center justify-center">
 				<Sidebar />
-				<div className="w-3/4"></div>
+				<div className="w-3/4 lg:w-5/6"></div>
 			</div>
 		</div>
 	);
