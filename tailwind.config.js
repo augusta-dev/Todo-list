@@ -7,7 +7,7 @@ module.exports = withMT({
 		extend: {
 			colors: {
 				cyan: {
-					900: "#C6F6FF",
+					900: "rgba(198, 246, 255, 1)",
 				},
 				green: {
 					900: "#0cce6b",
