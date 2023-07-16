@@ -27,10 +27,11 @@ module.exports = withMT({
 			},
 			fontFamily: {
 				arimo: "Arimo",
-				// roboto: "Roboto Slab",
-				// cormorant: "Cormorant Garamond",
+				roboto: "Roboto Slab",
+				cormorant: "Cormorant Garamond",
 				// custom: ['arimo', 'Helvetica', 'Arial', 'sans-serif'],
 			}
+			
 		},
 	},
 	plugins: [],

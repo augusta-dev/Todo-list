@@ -23,7 +23,7 @@ const Sidebar = () => {
 	];
 
 	return (
-		<div className="w-1/4 lg:w-1/6 bg-cyan-100 h-screen relative pl-6 pt-14">
+		<div className="w-1/4 lg:w-1/6 bg-cyan-100 h-content relative pl-6 pt-32">
 			{sideBarItems.map((sideBarItem) => (
 				<TaskClasses
 					title={sideBarItem.title}

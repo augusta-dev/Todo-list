@@ -11,10 +11,14 @@ function App(props) {
 				src="./Assets/Background.jpg"
 				alt=""
 			/>
-			<ComplexNavbar />
-			<div className="flex w-screen flex-wrap content-center justify-center">
+			<div className="w-full absolute z-10">
+				<ComplexNavbar />
+			</div>
+			
+			<div className="flex w-screen flex-wrap content-center justify-center h-auto">
+						
 				<Sidebar />
-				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-7 pt-6'></TaskDisplay>
+				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-6 pt-28'></TaskDisplay>
 			</div>
 		</div>
 	);

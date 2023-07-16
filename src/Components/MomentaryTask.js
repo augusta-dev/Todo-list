@@ -20,7 +20,7 @@ const MomentaryTask = () => {
 				/>
 				<div className="pl-2 -mt-1 leading-5">
 					<p>Clean the gutters</p>
-					<p>
+					<p className="font-roboto">
 						<span className="text-yellow-900">12:00</span> -{" "}
 						<span className="text-green-900">17:00</span>
 					</p>
