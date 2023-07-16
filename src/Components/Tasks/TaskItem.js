@@ -1,33 +1,47 @@
 import "./TaskItem.css";
 import { Checkbox } from "@material-tailwind/react";
 import broom from "../../Assets/broom.png";
+import bin from "../../Assets/trash.png";
+import bg from "../../Assets/bitmap.png";
 
 const TaskItem = (props) => {
-    return(
-        <div className="w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3">
+	return (
+		<div className="w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3">
+			<div className="w-1/12">
 				<Checkbox className="w-6 h-6 bg-transparent border-2 border-black relative " />
-				<div className="ml-1 self-center font-arimo">
-					<div className="flex flex-wrap">
-						<img
-							src={broom}
-							alt=""
-							srcset=""
-							className="h-5 w-5"
-						/>
-						<p className="pl-1 text-lg -mt-1">{props.name}</p>
-					</div>
+			</div>
 
-					{/* <div className=> */}
-					<div>
-						<p className="font-roboto text-base -mt-1">
-							<span className=" text-yellow-900">{props.start}:00</span> -{" "}
-							<span className="text-green-900">{props.start+props.duration}:00</span>
-						</p>
-					</div>
+			<div className="ml-1 self-center font-arimo w-7/12">
+				<div className="flex flex-wrap">
+					<img
+						src={broom}
+						alt=""
+						srcset=""
+						className="h-5 w-5"
+					/>
+					<p className="pl-1 text-lg -mt-1">{props.name}</p>
+				</div>
 
-					{/* </div> */}
+				<div>
+					<p className="font-roboto text-base -mt-1">
+						<span className=" text-yellow-900">
+							{props.start}:00
+						</span>{" "}
+						-{" "}
+						<span className="text-green-900">
+							{props.start + props.duration}:00
+						</span>
+					</p>
 				</div>
 			</div>
-    )
-}
+			<div className="float-right self-center w-4/12 bg flex flex-wrap align-middle justify-end">
+				<img
+					src={bin}
+					alt=""
+					className="h-5 w-5 float-right mr-6 self-center"
+				/>
+			</div>
+		</div>
+	);
+};
 export default TaskItem;
