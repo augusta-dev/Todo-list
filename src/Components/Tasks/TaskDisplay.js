@@ -1,7 +1,8 @@
-import { Typography } from "@material-tailwind/react";
 import icon from "../../Assets/plus.png";
 import TaskItem from "./TaskItem";
+import NewTask from "./NewTask";
 
+import { Typography } from "@material-tailwind/react";
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const TaskItems = [
@@ -33,6 +34,7 @@ const TaskDisplay = (props) => {
 				/>
 				<a className="text-gray-900 pl-3 `-mt-1">Add New</a>
 			</div>
+			<NewTask></NewTask>
 			{TaskItems.map((taskItem) => (
 				<TaskItem
 					start={taskItem.start}
