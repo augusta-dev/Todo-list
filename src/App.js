@@ -1,13 +1,10 @@
 import "./App.css";
 import ComplexNavbar from "./Components/ComplexNavbar";
 import Sidebar from "./Components/Sidebar";
+import TaskDisplay from "./Components/Tasks/TaskDisplay";
 
-function App() {
-	const sidebarItems = [
-		{
-			title: "",
-		},
-	];
+function App(props) {
+	// const class = class
 	return (
 		<div className="main h-screen w-screen">
 			<img
@@ -17,7 +14,7 @@ function App() {
 			<ComplexNavbar />
 			<div className="flex w-screen flex-wrap content-center justify-center">
 				<Sidebar />
-				<div className="w-3/4 lg:w-5/6"></div>
+				<TaskDisplay className='w-3/4 lg:w-5/6'></TaskDisplay>
 			</div>
 		</div>
 	);

@@ -21,6 +21,9 @@ module.exports = withMT({
 				navy: {
 					900: "#2B2D42",
 				},
+				gray: {
+					900: "#d4d4d4"
+				}
 			},
 			fontFamily: {
 				arimo: "Arimo",
