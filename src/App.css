@@ -3,4 +3,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 100vw;
+    overflow-x: hidden;
+}
+.main::-webkit-scrollbar{
+    display: none;
 }

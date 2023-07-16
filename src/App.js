@@ -14,7 +14,7 @@ function App(props) {
 			<ComplexNavbar />
 			<div className="flex w-screen flex-wrap content-center justify-center">
 				<Sidebar />
-				<TaskDisplay className='w-3/4 lg:w-5/6'></TaskDisplay>
+				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-7 pt-6'></TaskDisplay>
 			</div>
 		</div>
 	);

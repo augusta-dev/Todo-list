@@ -26,7 +26,7 @@ import {
   RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
-import iconn from '../Assets/scheduling.png'
+const iconn = '../Assets/scheduling.png'
  
 // profile menu component
 const profileMenuItems = [
@@ -36,15 +36,15 @@ const profileMenuItems = [
   },
   {
     label: "For Today",
-    icon: iconn,
+    icon: '../Assets/scheduling.png',
   },
   {
     label: "Completed",
-    icon: iconn,
+    icon: '../Assets/scheduling.png',
   },
   {
     label: "Help",
-    icon: iconn,
+    icon: '../Assets/scheduling.png',
   },
 ];
  
@@ -88,7 +88,7 @@ function ProfileMenu() {
                   : ""
               }`}
           >
-              <img src={icon} className="h-5 w-5"  />
+              <img src={icon}  />
               <Typography
                 as="span"
                 variant="small"
