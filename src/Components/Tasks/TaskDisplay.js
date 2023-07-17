@@ -7,22 +7,30 @@ import { Typography } from "@material-tailwind/react";
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const [TaskItems, setTaskItem] = useState([
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 1 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 3 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 4 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 5 },
 	]);
 	// const TaskItems = [
 	// 	];
-	const deleteItemHandler = (item) => {
-		TaskItems.unshift(item);
+	// const updatedItems = prevTasks.filter(task => task.id !== item.id);
+	const addTaskHandler = (enteredTask) => {
+		setTaskItem(prevTasks => {
+			const tasks = [...prevTasks.slice(), {...enteredTask, id: Math.random()}];
+			return tasks;
+		})
+	}
+	const deleteItemHandler = (task) => {
+		setTaskItem((prevTasks) => {
+			
+			// // console.log();
+			const taskIndex = prevTasks.indexOf(task);
+			// prevTasks.splice(itemIndex, 1);
+			const updatedTasks = [...prevTasks.slice(0, taskIndex), ...prevTasks.slice(taskIndex + 1)];
+			return updatedTasks;
+		});
 	};
 	return (
 		<div className={classes}>
@@ -40,12 +48,12 @@ const TaskDisplay = (props) => {
 				/>
 				<a className="text-gray-900 pl-3 `-mt-1">Add New</a>
 			</div>
-			<NewTask></NewTask>
+			<NewTask onAddTask={addTaskHandler}></NewTask>
 			{TaskItems.map((taskItem) => {
-				const taskId = Math.random().toString(); 
+				// var taskId = Math.random().toString();
 				return (
 					<TaskItem
-						key={taskId}
+						key={taskItem.id}
 						start={taskItem.start}
 						name={taskItem.name}
 						duration={taskItem.duration}
