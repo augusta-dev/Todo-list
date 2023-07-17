@@ -5,6 +5,9 @@ import bin from "../../Assets/trash.png";
 import bg from "../../Assets/bitmap.png";
 
 const TaskItem = (props) => {
+	const deleteHandler = () => {
+		props.onDelete(props.id);
+	};
 	return (
 		<div className="w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3">
 			<div className="w-1/12">
@@ -39,6 +42,7 @@ const TaskItem = (props) => {
 					src={bin}
 					alt=""
 					className="h-5 w-5 float-right mr-6 self-center"
+					onClick={deleteHandler}
 				/>
 			</div>
 		</div>
