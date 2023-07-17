@@ -8,17 +8,17 @@ const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const [TaskItems, setTaskItem] = useState([
 		{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-	{ name: "Clean the gutters", start: 12, duration: 2 },
-]);
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+		{ name: "Clean the gutters", start: 12, duration: 2 },
+	]);
 	// const TaskItems = [
 	// 	];
 	const deleteItemHandler = (item) => {
@@ -41,14 +41,18 @@ const TaskDisplay = (props) => {
 				<a className="text-gray-900 pl-3 `-mt-1">Add New</a>
 			</div>
 			<NewTask></NewTask>
-			{TaskItems.map((taskItem) => (
-				<TaskItem
-					start={taskItem.start}
-					name={taskItem.name}
-					duration={taskItem.duration}
-					onDelete={deleteItemHandler(taskItem)}
-				></TaskItem>
-			))}
+			{TaskItems.map((taskItem) => {
+				const taskId = Math.random().toString(); 
+				return (
+					<TaskItem
+						key={taskId}
+						start={taskItem.start}
+						name={taskItem.name}
+						duration={taskItem.duration}
+						onDelete={() => deleteItemHandler(taskItem)}
+					/>
+				);
+			})}
 		</div>
 	);
 };
