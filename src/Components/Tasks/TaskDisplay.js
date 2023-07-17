@@ -1,23 +1,29 @@
 import icon from "../../Assets/plus.png";
 import TaskItem from "./TaskItem";
 import NewTask from "./NewTask";
+import { useState } from "react";
 
 import { Typography } from "@material-tailwind/react";
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
-	const TaskItems = [
+	const [TaskItems, setTaskItem] = useState([
 		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2 },
-	];
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+	{ name: "Clean the gutters", start: 12, duration: 2 },
+]);
+	// const TaskItems = [
+	// 	];
+	const deleteItemHandler = (item) => {
+		TaskItems.unshift(item);
+	};
 	return (
 		<div className={classes}>
 			<Typography
@@ -40,6 +46,7 @@ const TaskDisplay = (props) => {
 					start={taskItem.start}
 					name={taskItem.name}
 					duration={taskItem.duration}
+					onDelete={deleteItemHandler(taskItem)}
 				></TaskItem>
 			))}
 		</div>
