@@ -36,7 +36,8 @@ const NewTask = (props) => {
 		start: taskStartTime,
 		endTime: taskEndTime,
 	};
-	const submitEventHandler = () => {
+	const submitEventHandler = (event) => {
+		event.preventDefault();
 		props.onAddTask(taskData);
 		setTaskDate("");
 		setTaskStartTime("");
