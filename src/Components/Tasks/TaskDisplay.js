@@ -7,11 +7,11 @@ import { Typography } from "@material-tailwind/react";
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const [TaskItems, setTaskItem] = useState([
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 1 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 2 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 3 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 4 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 5 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 1, endTime: 14 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 2, endTime: 14 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 3, endTime: 14 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 4, endTime: 14 },
+		{ name: "Clean the gutters", start: 12, duration: 2, id: 5, endTime: 14 },
 	]);
 	// const TaskItems = [
 	// 	];
@@ -19,6 +19,7 @@ const TaskDisplay = (props) => {
 	const addTaskHandler = (enteredTask) => {
 		setTaskItem(prevTasks => {
 			const tasks = [...prevTasks.slice(), {...enteredTask, id: Math.random()}];
+			console.log(enteredTask);
 			return tasks;
 		})
 	}
@@ -57,6 +58,7 @@ const TaskDisplay = (props) => {
 						start={taskItem.start}
 						name={taskItem.name}
 						duration={taskItem.duration}
+						endTime = {taskItem.endTime}
 						onDelete={() => deleteItemHandler(taskItem)}
 					/>
 				);

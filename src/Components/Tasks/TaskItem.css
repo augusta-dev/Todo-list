@@ -11,3 +11,10 @@
 	border-top-right-radius: 16px;
 	border-bottom-right-radius: 16px;
 }
+.min-width{
+	
+	/* min-width: -moz-fit-content;
+	min-width: -webkit-fill-available; */
+	min-width: 80px !important;
+
+}
