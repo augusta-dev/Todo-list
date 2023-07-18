@@ -80,7 +80,10 @@ const NewTask = (props) => {
 		setTaskDuration("");
 		setTaskName("");
 		setTaskIcon("");
+		setDisplayedEndTime("");
+		setDisplayedStartTime("");
 	};
+	console.log(props.onUrgencyCarriage);
 
 	return (
 		<form
@@ -122,11 +125,16 @@ const NewTask = (props) => {
 						value={taskIcon}
 						onSelect={iconEventHandler}
 					>
-						<Option>Material Tailwind HTML</Option>
+						
+						{/* props.onUrgencyCarriage; */}
+						
+							{/* // <Option>{item.title}</Option>
+						 */}
+						{/* 						
 						<Option>Material Tailwind React</Option>
 						<Option>Material Tailwind Vue</Option>
 						<Option>Material Tailwind Angular</Option>
-						<Option>Material Tailwind Svelte</Option>
+						<Option>Material Tailwind Svelte</Option> */}
 					</Select>
 				</div>
 

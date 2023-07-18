@@ -17,7 +17,7 @@ const TaskItem = (props) => {
 			<div className="ml-1 self-center font-arimo w-7/12">
 				<div className="flex flex-wrap">
 					<img
-						src={broom}
+						src={props.icon}
 						alt=""
 						srcset=""
 						className="h-5 w-5"

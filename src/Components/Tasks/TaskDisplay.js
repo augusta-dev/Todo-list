@@ -2,34 +2,76 @@ import icon from "../../Assets/plus.png";
 import TaskItem from "./TaskItem";
 import NewTask from "./NewTask";
 import { useState } from "react";
+import broom from "../../Assets/broom.png";
 
 import { Typography } from "@material-tailwind/react";
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const [TaskItems, setTaskItem] = useState([
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 1, endTime: 14 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 2, endTime: 14 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 3, endTime: 14 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 4, endTime: 14 },
-		{ name: "Clean the gutters", start: 12, duration: 2, id: 5, endTime: 14 },
+		{
+			name: "Clean the gutters",
+			start: 12,
+			duration: 2,
+			id: 1,
+			endTime: 14,
+			icon: broom,
+		},
+		{
+			name: "Clean the gutters",
+			start: 12,
+			duration: 2,
+			id: 2,
+			endTime: 14,
+			icon: broom,
+		},
+		{
+			name: "Clean the gutters",
+			start: 12,
+			duration: 2,
+			id: 3,
+			endTime: 14,
+			icon: broom,
+		},
+		{
+			name: "Clean the gutters",
+			start: 12,
+			duration: 2,
+			id: 4,
+			endTime: 14,
+			icon: broom,
+		},
+		{
+			name: "Clean the gutters",
+			start: 12,
+			duration: 2,
+			id: 5,
+			endTime: 14,
+			icon: broom,
+		},
 	]);
+	console.log(props.urgency);
 	// const TaskItems = [
 	// 	];
 	// const updatedItems = prevTasks.filter(task => task.id !== item.id);
 	const addTaskHandler = (enteredTask) => {
-		setTaskItem(prevTasks => {
-			const tasks = [...prevTasks.slice(), {...enteredTask, id: Math.random()}];
+		setTaskItem((prevTasks) => {
+			const tasks = [
+				...prevTasks.slice(),
+				{ ...enteredTask, id: Math.random() },
+			];
 			console.log(enteredTask);
 			return tasks;
-		})
-	}
+		});
+	};
 	const deleteItemHandler = (task) => {
 		setTaskItem((prevTasks) => {
-			
 			// // console.log();
 			const taskIndex = prevTasks.indexOf(task);
 			// prevTasks.splice(itemIndex, 1);
-			const updatedTasks = [...prevTasks.slice(0, taskIndex), ...prevTasks.slice(taskIndex + 1)];
+			const updatedTasks = [
+				...prevTasks.slice(0, taskIndex),
+				...prevTasks.slice(taskIndex + 1),
+			];
 			return updatedTasks;
 		});
 	};
@@ -49,7 +91,10 @@ const TaskDisplay = (props) => {
 				/>
 				<a className="text-gray-900 pl-3 `-mt-1">Add New</a>
 			</div>
-			<NewTask onAddTask={addTaskHandler}></NewTask>
+			<NewTask
+				onAddTask={addTaskHandler}
+				onUrgencyCarriage={props.urgency}
+			></NewTask>
 			{TaskItems.map((taskItem) => {
 				// var taskId = Math.random().toString();
 				return (
@@ -58,7 +103,8 @@ const TaskDisplay = (props) => {
 						start={taskItem.start}
 						name={taskItem.name}
 						duration={taskItem.duration}
-						endTime = {taskItem.endTime}
+						endTime={taskItem.endTime}
+						icon={taskItem.icon}
 						onDelete={() => deleteItemHandler(taskItem)}
 					/>
 				);
