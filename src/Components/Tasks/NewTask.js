@@ -1,6 +1,16 @@
 import { Input, Typography, Select, Option } from "@material-tailwind/react";
 import { useState } from "react";
 const NewTask = (props) => {
+	const urgencyModes = [
+		{
+			title: "For Today",
+			color: "fill-navy-900",
+		},
+		{
+			title: "Priorities",
+			color: "fill-red-900",
+		},
+	];
 	const [taskName, setTaskName] = useState("");
 	const nameEventHandler = (event) => {
 		setTaskName(event.target.value);
@@ -83,7 +93,6 @@ const NewTask = (props) => {
 		setDisplayedEndTime("");
 		setDisplayedStartTime("");
 	};
-	console.log(props.onUrgencyCarriage);
 
 	return (
 		<form
@@ -125,16 +134,18 @@ const NewTask = (props) => {
 						value={taskIcon}
 						onSelect={iconEventHandler}
 					>
-						
-						{/* props.onUrgencyCarriage; */}
-						
-							{/* // <Option>{item.title}</Option>
-						 */}
-						{/* 						
-						<Option>Material Tailwind React</Option>
-						<Option>Material Tailwind Vue</Option>
-						<Option>Material Tailwind Angular</Option>
-						<Option>Material Tailwind Svelte</Option> */}
+						{urgencyModes.map((item) => (
+							<Option className=" h-">
+								<svg className={`${item.color} h-5 w-5 inline`}>
+									<circle
+										cx="10"
+										cy="10"
+										r="8"
+									/>
+								</svg><span className="pl-2">{item.title}</span>
+								
+							</Option>
+						))}
 					</Select>
 				</div>
 

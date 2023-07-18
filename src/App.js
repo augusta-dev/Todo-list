@@ -2,21 +2,9 @@ import "./App.css";
 import ComplexNavbar from "./Components/ComplexNavbar";
 import Sidebar from "./Components/Sidebar";
 import TaskDisplay from "./Components/Tasks/TaskDisplay";
-import { useState, useEffect } from "react";
 
 function App(props) {
-	const [emptyUrgencyList, setEmptyUrgencyList] = useState([]);
-
-	const urgencyItemsCarrier = (items) => {
-	  var urgencyList = [...items];
-	  setEmptyUrgencyList([...urgencyList]);
-	//   return urgencyList;
-	};
-  
-	useEffect(() => {
-	  console.log("Updated emptyUrgencyList:", emptyUrgencyList);
-	}, []);
-
+	// const class = class
 	return (
 		<div className="main h-screen w-screen">
 			<img
@@ -29,13 +17,11 @@ function App(props) {
 			
 			<div className="flex w-screen flex-wrap content-center justify-center h-auto">
 						
-				<Sidebar onTransferedUrgency={urgencyItemsCarrier} />
-				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-6 pt-28' urgency={emptyUrgencyList}></TaskDisplay>
+				<Sidebar />
+				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-6 pt-28'></TaskDisplay>
 			</div>
 		</div>
-		
 	);
-	
 }
 
 export default App;

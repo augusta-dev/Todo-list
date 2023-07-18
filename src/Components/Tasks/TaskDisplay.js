@@ -49,7 +49,6 @@ const TaskDisplay = (props) => {
 			icon: broom,
 		},
 	]);
-	console.log(props.urgency);
 	// const TaskItems = [
 	// 	];
 	// const updatedItems = prevTasks.filter(task => task.id !== item.id);
@@ -89,12 +88,9 @@ const TaskDisplay = (props) => {
 					alt=""
 					className="h-4 w-4"
 				/>
-				<a className="text-gray-900 pl-3 `-mt-1">Add New</a>
+				<p className="text-gray-900 pl-3 `-mt-1">Add New</p>
 			</div>
-			<NewTask
-				onAddTask={addTaskHandler}
-				onUrgencyCarriage={props.urgency}
-			></NewTask>
+			<NewTask onAddTask={addTaskHandler}></NewTask>
 			{TaskItems.map((taskItem) => {
 				// var taskId = Math.random().toString();
 				return (
@@ -104,7 +100,7 @@ const TaskDisplay = (props) => {
 						name={taskItem.name}
 						duration={taskItem.duration}
 						endTime={taskItem.endTime}
-						icon={taskItem.icon}
+						icon={broom}
 						onDelete={() => deleteItemHandler(taskItem)}
 					/>
 				);
