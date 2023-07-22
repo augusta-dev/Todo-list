@@ -54,13 +54,11 @@ const TaskDisplay = (props) => {
 			state: "incomplete",
 		},
 	]);
+
 	const [isVisible, setVisibility] = useState(true);
 	const changeVisibility = () => {
 		setVisibility((prevState) => !prevState);
-	}
-	// const TaskItems = [
-	// 	];
-	// const updatedItems = prevTasks.filter(task => task.id !== item.id);
+	};
 	const addTaskHandler = (enteredTask) => {
 		setTaskItem((prevTasks) => {
 			const tasks = [
@@ -83,6 +81,18 @@ const TaskDisplay = (props) => {
 			return updatedTasks;
 		});
 	};
+	const adjustDisplay = (title) => {
+		setTaskItem((prevTasks) => {
+			const tasks = prevTasks.filter(
+				(task) =>
+					(task.name || task.state || task.date || task.urgency) ===
+					title,
+			);
+			return tasks;
+		});
+	};
+
+	// adjustDisplay(title);
 	return (
 		<div className={classes}>
 			<Typography
@@ -91,7 +101,10 @@ const TaskDisplay = (props) => {
 			>
 				For Today
 			</Typography>
-			<div className = {`flex flex-wrap pt-2 pb-3 pl-5`} onClick={changeVisibility}>
+			<div
+				className={`flex flex-wrap pt-2 pb-3 pl-5`}
+				onClick={changeVisibility}
+			>
 				<img
 					src={icon}
 					alt=""
@@ -99,7 +112,11 @@ const TaskDisplay = (props) => {
 				/>
 				<p className="text-gray-900 pl-3 -mt-1">Add New</p>
 			</div>
-			<NewTask onAddTask={addTaskHandler} className={`${isVisible ? "block": "hidden"}`} onSubmit={changeVisibility}></NewTask>
+			<NewTask
+				onAddTask={addTaskHandler}
+				className={`${isVisible ? "block" : "hidden"}`}
+				onSubmit={changeVisibility}
+			></NewTask>
 			{TaskItems.map((taskItem) => {
 				// var taskId = Math.random().toString();
 				return (
