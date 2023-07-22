@@ -82,22 +82,27 @@ const NewTask = (props) => {
 	};
 	const submitEventHandler = (event) => {
 		event.preventDefault();
-		props.onAddTask(taskData);
-
-		setTaskDate("");
-		setTaskStartTime("");
-		setTaskEndTime("");
-		setTaskDuration("");
-		setTaskName("");
-		setTaskIcon("");
-		setDisplayedEndTime("");
-		setDisplayedStartTime("");
+		if (taskData.name && taskData.date) {
+			props.onAddTask(taskData);
+			props.onSubmit();
+			setTaskDate("");
+			setTaskStartTime("");
+			setTaskEndTime("");
+			setTaskDuration("");
+			setTaskName("");
+			setTaskIcon("");
+			setDisplayedEndTime("");
+			setDisplayedStartTime("");
+		} else {
+			setTaskName("Please fill the form completely");
+		}
 	};
 
 	return (
 		<form
 			action=""
 			onSubmit={submitEventHandler}
+			className={props.className}
 		>
 			<div>
 				<div className="grid grid-cols-1 gap-2 pb-3">
@@ -142,8 +147,8 @@ const NewTask = (props) => {
 										cy="10"
 										r="8"
 									/>
-								</svg><span className="pl-2">{item.title}</span>
-								
+								</svg>
+								<span className="pl-2">{item.title}</span>
 							</Option>
 						))}
 					</Select>

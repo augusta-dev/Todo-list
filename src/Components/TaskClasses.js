@@ -1,4 +1,7 @@
 const TaskClasses = (props) => {
+	const clickEventHandler = () => {
+		props.onClick(props.title)
+	}
 	return (
 		<div className="w-100 flex flex-wrap h-3 pb-14">
 			<div className="w-8">
@@ -12,7 +15,7 @@ const TaskClasses = (props) => {
 			</div>
 
 			<div className="w-auto">
-				<a className="font-arimo text-lg leading-5">{props.title}</a>
+				<a className="font-arimo text-lg leading-5" onClick={clickEventHandler}>{props.title}</a>
 			</div>
 		</div>
 	);

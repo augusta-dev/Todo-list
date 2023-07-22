@@ -15,6 +15,7 @@ const TaskDisplay = (props) => {
 			id: 1,
 			endTime: 14,
 			icon: broom,
+			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters",
@@ -23,6 +24,7 @@ const TaskDisplay = (props) => {
 			id: 2,
 			endTime: 14,
 			icon: broom,
+			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters",
@@ -31,6 +33,7 @@ const TaskDisplay = (props) => {
 			id: 3,
 			endTime: 14,
 			icon: broom,
+			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters",
@@ -39,6 +42,7 @@ const TaskDisplay = (props) => {
 			id: 4,
 			endTime: 14,
 			icon: broom,
+			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters",
@@ -47,8 +51,13 @@ const TaskDisplay = (props) => {
 			id: 5,
 			endTime: 14,
 			icon: broom,
+			state: "incomplete",
 		},
 	]);
+	const [isVisible, setVisibility] = useState(true);
+	const changeVisibility = () => {
+		setVisibility((prevState) => !prevState);
+	}
 	// const TaskItems = [
 	// 	];
 	// const updatedItems = prevTasks.filter(task => task.id !== item.id);
@@ -82,15 +91,15 @@ const TaskDisplay = (props) => {
 			>
 				For Today
 			</Typography>
-			<div className="flex flex-wrap pt-2 pb-3 pl-5">
+			<div className = {`flex flex-wrap pt-2 pb-3 pl-5`} onClick={changeVisibility}>
 				<img
 					src={icon}
 					alt=""
 					className="h-4 w-4"
 				/>
-				<p className="text-gray-900 pl-3 `-mt-1">Add New</p>
+				<p className="text-gray-900 pl-3 -mt-1">Add New</p>
 			</div>
-			<NewTask onAddTask={addTaskHandler}></NewTask>
+			<NewTask onAddTask={addTaskHandler} className={`${isVisible ? "block": "hidden"}`} onSubmit={changeVisibility}></NewTask>
 			{TaskItems.map((taskItem) => {
 				// var taskId = Math.random().toString();
 				return (
@@ -101,6 +110,7 @@ const TaskDisplay = (props) => {
 						duration={taskItem.duration}
 						endTime={taskItem.endTime}
 						icon={broom}
+						state={props.state}
 						onDelete={() => deleteItemHandler(taskItem)}
 					/>
 				);
