@@ -1,10 +1,23 @@
+import { useState } from "react";
 import "./App.css";
 import ComplexNavbar from "./Components/ComplexNavbar";
 import Sidebar from "./Components/Sidebar";
 import TaskDisplay from "./Components/Tasks/TaskDisplay";
 
+
 function App(props) {
 	// const class = class
+	// const [taskToBeDisplayed, setTaskToBeDisplayed] = useState("")
+	// const displayTasks = (tasks) => {
+	// 	displayTask(tasks);
+	// }
+	// const displayTask = (tasks) => {
+	// 	setTaskToBeDisplayed(tasks);
+	// 	// console.log(tasks)
+	// 	return tasks;
+	// }
+	const [selectedTasks, setSelectedTasks] = useState([]);
+	
 	return (
 		<div className="main h-screen w-screen">
 			<img
@@ -17,8 +30,8 @@ function App(props) {
 			
 			<div className="flex w-screen flex-wrap content-center justify-center h-auto">
 						
-				<Sidebar />
-				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-6 pt-28'></TaskDisplay>
+				<Sidebar onSelection={setSelectedTasks} />
+				<TaskDisplay className='w-3/4 lg:w-5/6  pl-5 pr-6 pt-28' onDisplay={selectedTasks}></TaskDisplay>
 			</div>
 		</div>
 	);

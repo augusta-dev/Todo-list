@@ -2,7 +2,7 @@ import { Typography } from "@material-tailwind/react";
 import "./Sidebar.css";
 import TaskClasses from "./TaskClasses";
 import MomentaryTask from "./MomentaryTask";
-const Sidebar = () => {
+const Sidebar = (props) => {
 	const sideBarItems = [
 		{
 			title: "All Tasks",
@@ -22,17 +22,14 @@ const Sidebar = () => {
 		},
 	];
 	const displaySelectedTasks = (title) => {
-		if (title === "Completed") {
-			// if(item.state = "completed") {
-
-			// }
-		}
-	}
+		props.onSelection(title);
+	};
 
 	return (
 		<div className="w-1/4 lg:w-1/6 bg-cyan-900 h-content relative pl-6 pt-32">
-			{sideBarItems.map((sideBarItem) => (
+			{sideBarItems.map((sideBarItem, index) => (
 				<TaskClasses
+					key={index}
 					title={sideBarItem.title}
 					color={sideBarItem.color}
 					onClick={displaySelectedTasks}

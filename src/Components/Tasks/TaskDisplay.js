@@ -1,7 +1,7 @@
 import icon from "../../Assets/plus.png";
 import TaskItem from "./TaskItem";
 import NewTask from "./NewTask";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import broom from "../../Assets/broom.png";
 
 import { Typography } from "@material-tailwind/react";
@@ -51,7 +51,7 @@ const TaskDisplay = (props) => {
 			id: 5,
 			endTime: 14,
 			icon: broom,
-			state: "incomplete",
+			state: "Completed",
 		},
 	]);
 
@@ -65,34 +65,37 @@ const TaskDisplay = (props) => {
 				...prevTasks.slice(),
 				{ ...enteredTask, id: Math.random() },
 			];
-			console.log(enteredTask);
 			return tasks;
 		});
 	};
 	const deleteItemHandler = (task) => {
 		setTaskItem((prevTasks) => {
 			// // console.log();
-			const taskIndex = prevTasks.indexOf(task);
+			const taskIndex = task.id;
 			// prevTasks.splice(itemIndex, 1);
-			const updatedTasks = [
-				...prevTasks.slice(0, taskIndex),
-				...prevTasks.slice(taskIndex + 1),
-			];
-			return updatedTasks;
-		});
-	};
-	const adjustDisplay = (title) => {
-		setTaskItem((prevTasks) => {
-			const tasks = prevTasks.filter(
-				(task) =>
-					(task.name || task.state || task.date || task.urgency) ===
-					title,
-			);
+			// const updatedTasks = [
+			// 	...prevTasks.slice(0, taskIndex),
+			// 	...prevTasks.slice(taskIndex + 1),
+			// ];
+			// return updatedTasks;
+			const tasks = prevTasks.filter(task => task.id !== taskIndex)
 			return tasks;
 		});
 	};
+	const adjustDisplay = (title) => {
+		console.log(title);
+		setTaskItem((prevTasks) => prevTasks.filter((task) =>
+			(task.name || task.state || task.date || task.urgency) === title
+		));
+	};
+	useEffect(() => {
+		adjustDisplay(props.onDisplay);
+	}, [props.onDisplay]);
 
-	// adjustDisplay(title);
+	// adjustDisplay("incomplete");
+	// props.adjustDisplayedTasks = ()
+
+	// adjustDisplay(props.onDisplay);
 	return (
 		<div className={classes}>
 			<Typography
