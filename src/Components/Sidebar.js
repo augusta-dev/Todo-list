@@ -23,7 +23,9 @@ const Sidebar = () => {
 	];
 	const displaySelectedTasks = (title) => {
 		if (title === "Completed") {
-			alert("Yes");
+			// if(item.state = "completed") {
+
+			// }
 		}
 	}
 

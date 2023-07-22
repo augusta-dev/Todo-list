@@ -1,5 +1,12 @@
-import { Input, Typography, Select, Option } from "@material-tailwind/react";
+import {
+	Input,
+	Typography,
+	Select,
+	Option,
+	Button,
+} from "@material-tailwind/react";
 import { useState } from "react";
+import submitIcon from "../../Assets/upload.png";
 const NewTask = (props) => {
 	const urgencyModes = [
 		{
@@ -79,6 +86,7 @@ const NewTask = (props) => {
 		duration: taskDuration,
 		start: taskStartTime,
 		endTime: taskEndTime,
+		state: "incomplete",
 	};
 	const submitEventHandler = (event) => {
 		event.preventDefault();
@@ -102,7 +110,7 @@ const NewTask = (props) => {
 		<form
 			action=""
 			onSubmit={submitEventHandler}
-			className={props.className}
+			className={`${props.className} pb-5`}
 		>
 			<div>
 				<div className="grid grid-cols-1 gap-2 pb-3">
@@ -186,7 +194,22 @@ const NewTask = (props) => {
 						value={displayedEndTime}
 					/>
 				</div>
-				<button type="submit">Yes</button>
+				<div className="flex flex-wrap items-center w-full justify-center">
+					<Button
+						type="submit"
+						variant="outlined"
+						color="blue-gray"
+						className="flex items-center gap-3 pt-2 pb-2 w-1/2 justify-center"
+					>
+
+						Add Task
+						<img
+							src={submitIcon}
+							alt="metamask"
+							className="h-6 w-6"
+						/>
+					</Button>
+				</div>
 			</div>
 		</form>
 	);
