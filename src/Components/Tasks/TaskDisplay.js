@@ -12,49 +12,49 @@ const TaskDisplay = (props) => {
 	const [TaskItems, setTaskItem] = useState([
 		{
 			name: "Clean the gutters completed",
-			start: 12,
+			start: "12:00 PM",
 			duration: 2,
 			id: 1,
-			endTime: 14,
+			endTime: "14:00 PM",
 			icon: broom,
 			state: "Completed",
 		},
 		{
 			name: "Clean the gutters today",
-			start: 12,
+			start: "12:00 PM",
 			duration: 2,
 			id: 2,
-			endTime: 14,
+			endTime: "14:00 PM",
 			date: "2023-07-23",
 			icon: broom,
 			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters",
-			start: 12,
+			start: "12:00 PM",
 			duration: 2,
 			id: 3,
-			endTime: 14,
+			endTime: "14:00 PM",
 			icon: broom,
 			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters today too",
-			start: 12,
+			start: "12:00 PM",
 			duration: 2,
 			id: 4,
-			endTime: 14,
+			endTime: "14:00 PM",
 			date: "2023-07-23",
 			icon: broom,
 			state: "incomplete",
-			urgency: "priority",
+			urgency: "Priority",
 		},
 		{
 			name: "Clean the gutters",
-			start: 12,
+			start: "12:00 PM",
 			duration: 2,
 			id: 5,
-			endTime: 14,
+			endTime: "14:00 PM",
 			icon: broom,
 			state: "Completed",
 		},
@@ -67,6 +67,9 @@ const TaskDisplay = (props) => {
 	const addTaskHandler = (enteredTask) => {
 		setTaskItem((prevTasks) => {
 			const tasks = [...prevTasks, { ...enteredTask, id: Math.random() }];
+			setDisplayedTasks(() => {
+				return tasks;
+			});
 			return tasks;
 		});
 	};
@@ -100,7 +103,7 @@ const TaskDisplay = (props) => {
 		} else if (title === "Priorities") {
 			setTaskItem((prevTasks) => {
 				const tasks = prevTasks.filter(
-					(task) => task.urgency === "priority",
+					(task) => task.urgency === "Priority",
 				);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;

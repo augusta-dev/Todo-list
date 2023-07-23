@@ -29,11 +29,11 @@ const TaskItem = (props) => {
 				<div>
 					<p className="font-roboto text-base -mt-1">
 						<span className=" text-yellow-900">
-							{props.start}:00
+							{props.start}
 						</span>{" "}
 						-{" "}
 						<span className="text-green-900">
-							{props.endTime}:00
+							{props.endTime}
 						</span>
 					</p>
 				</div>
