@@ -6,7 +6,6 @@ import broom from "../../Assets/broom.png";
 import icon from "../../Assets/plus.png";
 
 const TaskDisplay = (props) => {
-
 	const classes = "" + props.className;
 	const currentDate = new Date().toISOString().slice(0, 10);
 
@@ -161,7 +160,6 @@ const TaskDisplay = (props) => {
 						icon={broom}
 						state={props.state}
 						onDelete={() => deleteItemHandler(taskItem)}
-						
 					/>
 				);
 			})}
