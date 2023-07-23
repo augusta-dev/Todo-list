@@ -10,11 +10,11 @@ import submitIcon from "../../Assets/upload.png";
 const NewTask = (props) => {
 	const urgencyModes = [
 		{
-			title: "For Today",
+			title: "Not A Priority",
 			color: "fill-navy-900",
 		},
 		{
-			title: "Priorities",
+			title: "Priority",
 			color: "fill-red-900",
 		},
 	];
@@ -34,11 +34,8 @@ const NewTask = (props) => {
 	};
 	
 	const [taskDuration, setTaskDuration] = useState("");
-	var taskDur = 0;
 	const durationEventHandler = (event) => {
 		setTaskDuration(event.target.value);
-		taskDur = parseInt(event.target.value, 10);
-		// startTimeEventHandler();
 	};
 
 	const [taskStartTime, setTaskStartTime] = useState("");
@@ -46,15 +43,23 @@ const NewTask = (props) => {
 	const [displayedEndTime, setDisplayedEndTime] = useState("");
 	const [taskEndTime, setTaskEndTime] = useState("");
 
+	const [taskUrgency, setTaskUrgency] = useState("");
+	const [urgencyTitle, setUrgencyTitle] = useState("");
+
+	const urgencyEventHandler = (event) => {
+		// setTaskUrgency(event.target.value);
+
+		console.log(event.target.value.title);
+	}
+	const urgencyTitleIdentifier = (event) => {
+		event.target.value.title
+	}
 	const startTimeEventHandler = (event) => {
 		setDisplayedStartTime(event.target.value);
 		const taskStart = event.target.value;
 		const newDate = new Date(`${taskDate}, ${taskStart}`);
 		setTaskStartTime(newDate.toLocaleTimeString("en-US"));
 		endTimeEventHandler(newDate);
-		console.log(newDate);
-		//
-		// console.log(taskDuration);
 	};
 	const endTimeEventHandler = (date) => {
 		const endTimeDate = new Date(
@@ -75,9 +80,6 @@ const NewTask = (props) => {
 		const endDate = new Date(date);
 		endDate.setHours(endHours);
 		setTaskEndTime(endDate.toLocaleTimeString("en-US"));
-		console.log(endDate);
-		console.log(endHours);
-		// console.log(taskDur);
 	};
 	const taskData = {
 		name: taskName,
@@ -87,6 +89,7 @@ const NewTask = (props) => {
 		start: taskStartTime,
 		endTime: taskEndTime,
 		state: "incomplete",
+		// urgency: taskUrgency,
 	};
 	const submitEventHandler = (event) => {
 		event.preventDefault();
@@ -144,11 +147,11 @@ const NewTask = (props) => {
 							mount: { y: 0 },
 							unmount: { y: 25 },
 						}}
-						value={taskIcon}
-						onSelect={iconEventHandler}
+						value={taskUrgency}
+						onChange={urgencyEventHandler}
 					>
 						{urgencyModes.map((item) => (
-							<Option className=" h-">
+							<Option title={item.title} onClick={urgencyTitleIdentifier(title)}>
 								<svg className={`${item.color} h-5 w-5 inline`}>
 									<circle
 										cx="10"
