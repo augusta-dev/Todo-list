@@ -62,7 +62,6 @@ const TaskDisplay = (props) => {
 	]);
 
 	const [isVisible, setVisibility] = useState(false);
-	const [isVisibleToo, setVisibilityToo] = useState(false);
 	const changeVisibility = () => {
 		setVisibility((prevState) => !prevState);
 	};
@@ -86,7 +85,6 @@ const TaskDisplay = (props) => {
 			setTaskItem((prevTasks) => {
 				const tasks = prevTasks;
 				console.log(prevTasks);
-				setVisibilityToo(true);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;
 				});
@@ -98,7 +96,6 @@ const TaskDisplay = (props) => {
 					(task) => task.date === currentDate,
 				);
 				console.log(prevTasks);
-				setVisibilityToo(true);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;
 				});
@@ -109,8 +106,6 @@ const TaskDisplay = (props) => {
 				const tasks = prevTasks.filter(
 					(task) => task.urgency === "priority",
 				);
-				console.log(prevTasks);
-				setVisibilityToo(true);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;
 				});
@@ -119,8 +114,6 @@ const TaskDisplay = (props) => {
 		} else {
 			setTaskItem((prevTasks) => {
 				const tasks = prevTasks.filter((task) => task.state === title);
-				console.log(prevTasks);
-				setVisibilityToo(true);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;
 				});
@@ -168,7 +161,7 @@ const TaskDisplay = (props) => {
 						icon={broom}
 						state={props.state}
 						onDelete={() => deleteItemHandler(taskItem)}
-						className={`${isVisibleToo ? "flex" : "hidden"}`}
+						
 					/>
 				);
 			})}
