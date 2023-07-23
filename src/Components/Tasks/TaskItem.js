@@ -8,8 +8,9 @@ const TaskItem = (props) => {
 	const deleteHandler = () => {
 		props.onDelete(props.id);
 	};
+
 	return (
-		<div className="w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3">
+		<div className={`${props.className} w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3`}>
 			<div className="w-1/12">
 				<Checkbox className="w-6 h-6 bg-transparent border-2 border-black relative " />
 			</div>

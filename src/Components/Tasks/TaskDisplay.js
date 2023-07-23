@@ -9,13 +9,13 @@ const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const [TaskItems, setTaskItem] = useState([
 		{
-			name: "Clean the gutters",
+			name: "Clean the gutters completed",
 			start: 12,
 			duration: 2,
 			id: 1,
 			endTime: 14,
 			icon: broom,
-			state: "incomplete",
+			state: "Completed",
 		},
 		{
 			name: "Clean the gutters",
@@ -55,16 +55,14 @@ const TaskDisplay = (props) => {
 		},
 	]);
 
-	const [isVisible, setVisibility] = useState(true);
+	const [isVisible, setVisibility] = useState(false);
+	const [isVisibleToo, setVisibilityToo] = useState(false);
 	const changeVisibility = () => {
 		setVisibility((prevState) => !prevState);
 	};
 	const addTaskHandler = (enteredTask) => {
 		setTaskItem((prevTasks) => {
-			const tasks = [
-				...prevTasks.slice(),
-				{ ...enteredTask, id: Math.random() },
-			];
+			const tasks = [...prevTasks, { ...enteredTask, id: Math.random() }];
 			return tasks;
 		});
 	};
@@ -78,15 +76,36 @@ const TaskDisplay = (props) => {
 			// 	...prevTasks.slice(taskIndex + 1),
 			// ];
 			// return updatedTasks;
-			const tasks = prevTasks.filter(task => task.id !== taskIndex)
+			const tasks = prevTasks.filter((task) => task.id !== taskIndex);
 			return tasks;
 		});
 	};
+	const [displayedTasks, setDisplayedTasks] = useState([TaskItems]);
 	const adjustDisplay = (title) => {
 		console.log(title);
-		setTaskItem((prevTasks) => prevTasks.filter((task) =>
-			(task.name || task.state || task.date || task.urgency) === title
-		));
+		if (title === "All Tasks"){
+			setTaskItem((prevTasks) => {
+				const tasks = prevTasks;
+				console.log(prevTasks);
+				setVisibilityToo(true);
+				setDisplayedTasks((prevDisplayedTasks) => {
+					return tasks;
+				});
+				return prevTasks;
+			});
+		} else{
+			setTaskItem((prevTasks) => {
+				const tasks = prevTasks.filter((task) => task.state === title);
+				console.log(prevTasks);
+				setVisibilityToo(true);
+				setDisplayedTasks((prevDisplayedTasks) => {
+					return tasks;
+				});
+				return prevTasks;
+			});
+		}
+		
+
 	};
 	useEffect(() => {
 		adjustDisplay(props.onDisplay);
@@ -120,7 +139,7 @@ const TaskDisplay = (props) => {
 				className={`${isVisible ? "block" : "hidden"}`}
 				onSubmit={changeVisibility}
 			></NewTask>
-			{TaskItems.map((taskItem) => {
+			{/* {TaskItems.map((taskItem) => {
 				// var taskId = Math.random().toString();
 				return (
 					<TaskItem
@@ -132,6 +151,23 @@ const TaskDisplay = (props) => {
 						icon={broom}
 						state={props.state}
 						onDelete={() => deleteItemHandler(taskItem)}
+						className={`${isVisibleToo ? "hidden" : "flex"}`}
+					/>
+				);
+			})} */}
+			{displayedTasks.map((taskItem) => {
+				// var taskId = Math.random().toString();
+				return (
+					<TaskItem
+						key={taskItem.id}
+						start={taskItem.start}
+						name={taskItem.name}
+						duration={taskItem.duration}
+						endTime={taskItem.endTime}
+						icon={broom}
+						state={props.state}
+						onDelete={() => deleteItemHandler(taskItem)}
+						className={`${isVisibleToo ? "flex" : "hidden"}`}
 					/>
 				);
 			})}

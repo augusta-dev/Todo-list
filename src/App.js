@@ -16,8 +16,8 @@ function App(props) {
 	// 	// console.log(tasks)
 	// 	return tasks;
 	// }
-	const [selectedTasks, setSelectedTasks] = useState([]);
-	
+	const [selectedTasks, setSelectedTasks] = useState('');
+	// console.log(selectedTasks);
 	return (
 		<div className="main h-screen w-screen">
 			<img

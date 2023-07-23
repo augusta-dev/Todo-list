@@ -26,7 +26,7 @@ const Sidebar = (props) => {
 	};
 
 	return (
-		<div className="w-1/4 lg:w-1/6 bg-cyan-900 h-content relative pl-6 pt-32">
+		<div className="w-1/4 lg:w-1/6 bg-cyan-900 min-h-screen h-content relative pl-6 pt-32">
 			{sideBarItems.map((sideBarItem, index) => (
 				<TaskClasses
 					key={index}
