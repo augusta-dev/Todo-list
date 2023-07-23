@@ -32,7 +32,7 @@ const NewTask = (props) => {
 	const dateEventHandler = (event) => {
 		setTaskDate(event.target.value);
 	};
-
+	
 	const [taskDuration, setTaskDuration] = useState("");
 	var taskDur = 0;
 	const durationEventHandler = (event) => {

@@ -1,12 +1,15 @@
-import icon from "../../Assets/plus.png";
+import { useState, useEffect } from "react";
+import { Typography } from "@material-tailwind/react";
 import TaskItem from "./TaskItem";
 import NewTask from "./NewTask";
-import { useState, useEffect } from "react";
 import broom from "../../Assets/broom.png";
+import icon from "../../Assets/plus.png";
 
-import { Typography } from "@material-tailwind/react";
 const TaskDisplay = (props) => {
+
 	const classes = "" + props.className;
+	const currentDate = new Date().toISOString().slice(0, 10);
+
 	const [TaskItems, setTaskItem] = useState([
 		{
 			name: "Clean the gutters completed",
@@ -18,11 +21,12 @@ const TaskDisplay = (props) => {
 			state: "Completed",
 		},
 		{
-			name: "Clean the gutters",
+			name: "Clean the gutters today",
 			start: 12,
 			duration: 2,
 			id: 2,
 			endTime: 14,
+			date: "2023-07-23",
 			icon: broom,
 			state: "incomplete",
 		},
@@ -36,13 +40,15 @@ const TaskDisplay = (props) => {
 			state: "incomplete",
 		},
 		{
-			name: "Clean the gutters",
+			name: "Clean the gutters today too",
 			start: 12,
 			duration: 2,
 			id: 4,
 			endTime: 14,
+			date: "2023-07-23",
 			icon: broom,
 			state: "incomplete",
+			urgency: "priority",
 		},
 		{
 			name: "Clean the gutters",
@@ -68,14 +74,7 @@ const TaskDisplay = (props) => {
 	};
 	const deleteItemHandler = (task) => {
 		setTaskItem((prevTasks) => {
-			// // console.log();
 			const taskIndex = task.id;
-			// prevTasks.splice(itemIndex, 1);
-			// const updatedTasks = [
-			// 	...prevTasks.slice(0, taskIndex),
-			// 	...prevTasks.slice(taskIndex + 1),
-			// ];
-			// return updatedTasks;
 			const tasks = prevTasks.filter((task) => task.id !== taskIndex);
 			return tasks;
 		});
@@ -83,7 +82,7 @@ const TaskDisplay = (props) => {
 	const [displayedTasks, setDisplayedTasks] = useState([TaskItems]);
 	const adjustDisplay = (title) => {
 		console.log(title);
-		if (title === "All Tasks"){
+		if (title === "All Tasks" || title === "") {
 			setTaskItem((prevTasks) => {
 				const tasks = prevTasks;
 				console.log(prevTasks);
@@ -93,7 +92,31 @@ const TaskDisplay = (props) => {
 				});
 				return prevTasks;
 			});
-		} else{
+		} else if (title === "For Today") {
+			setTaskItem((prevTasks) => {
+				const tasks = prevTasks.filter(
+					(task) => task.date === currentDate,
+				);
+				console.log(prevTasks);
+				setVisibilityToo(true);
+				setDisplayedTasks((prevDisplayedTasks) => {
+					return tasks;
+				});
+				return prevTasks;
+			});
+		} else if (title === "Priorities") {
+			setTaskItem((prevTasks) => {
+				const tasks = prevTasks.filter(
+					(task) => task.urgency === "priority",
+				);
+				console.log(prevTasks);
+				setVisibilityToo(true);
+				setDisplayedTasks((prevDisplayedTasks) => {
+					return tasks;
+				});
+				return prevTasks;
+			});
+		} else {
 			setTaskItem((prevTasks) => {
 				const tasks = prevTasks.filter((task) => task.state === title);
 				console.log(prevTasks);
@@ -104,17 +127,11 @@ const TaskDisplay = (props) => {
 				return prevTasks;
 			});
 		}
-		
-
 	};
 	useEffect(() => {
 		adjustDisplay(props.onDisplay);
 	}, [props.onDisplay]);
 
-	// adjustDisplay("incomplete");
-	// props.adjustDisplayedTasks = ()
-
-	// adjustDisplay(props.onDisplay);
 	return (
 		<div className={classes}>
 			<Typography
@@ -139,24 +156,8 @@ const TaskDisplay = (props) => {
 				className={`${isVisible ? "block" : "hidden"}`}
 				onSubmit={changeVisibility}
 			></NewTask>
-			{/* {TaskItems.map((taskItem) => {
-				// var taskId = Math.random().toString();
-				return (
-					<TaskItem
-						key={taskItem.id}
-						start={taskItem.start}
-						name={taskItem.name}
-						duration={taskItem.duration}
-						endTime={taskItem.endTime}
-						icon={broom}
-						state={props.state}
-						onDelete={() => deleteItemHandler(taskItem)}
-						className={`${isVisibleToo ? "hidden" : "flex"}`}
-					/>
-				);
-			})} */}
+
 			{displayedTasks.map((taskItem) => {
-				// var taskId = Math.random().toString();
 				return (
 					<TaskItem
 						key={taskItem.id}
