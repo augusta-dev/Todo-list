@@ -79,11 +79,9 @@ const TaskDisplay = (props) => {
 	};
 	const [displayedTasks, setDisplayedTasks] = useState([TaskItems]);
 	const adjustDisplay = (title) => {
-		console.log(title);
 		if (title === "All Tasks" || title === "") {
 			setTaskItem((prevTasks) => {
 				const tasks = prevTasks;
-				console.log(prevTasks);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;
 				});
@@ -94,7 +92,6 @@ const TaskDisplay = (props) => {
 				const tasks = prevTasks.filter(
 					(task) => task.date === currentDate,
 				);
-				console.log(prevTasks);
 				setDisplayedTasks((prevDisplayedTasks) => {
 					return tasks;
 				});
