@@ -32,7 +32,7 @@ const NewTask = (props) => {
 	const dateEventHandler = (event) => {
 		setTaskDate(event.target.value);
 	};
-	
+
 	const [taskDuration, setTaskDuration] = useState("");
 	const durationEventHandler = (event) => {
 		setTaskDuration(event.target.value);
@@ -43,23 +43,28 @@ const NewTask = (props) => {
 	const [displayedEndTime, setDisplayedEndTime] = useState("");
 	const [taskEndTime, setTaskEndTime] = useState("");
 
-	const [taskUrgency, setTaskUrgency] = useState("");
+	// const [taskUrgency, setTaskUrgency] = useState("");
 	const [urgencyTitle, setUrgencyTitle] = useState("");
 
 	const urgencyEventHandler = (event) => {
-		// setTaskUrgency(event.target.value);
+		const selectedUrgency = urgencyModes.find(
+			(item) => item.title === event.target.value,
+		);
+		console.log(event.target.value)
+		setUrgencyTitle(selectedUrgency.title);
+		// console.log(selectedUrgency)
+	};
 
-		console.log(event.target.value.title);
-	}
-	const urgencyTitleIdentifier = (event) => {
-		event.target.value.title
-	}
+	// const urgencyValueWriter = (event) => {	
+	// 	setTaskUrgency(event.target.value);
+	// };
 	const startTimeEventHandler = (event) => {
 		setDisplayedStartTime(event.target.value);
 		const taskStart = event.target.value;
 		const newDate = new Date(`${taskDate}, ${taskStart}`);
 		setTaskStartTime(newDate.toLocaleTimeString("en-US"));
 		endTimeEventHandler(newDate);
+		// console.log(urgencyTitle)
 	};
 	const endTimeEventHandler = (date) => {
 		const endTimeDate = new Date(
@@ -89,7 +94,7 @@ const NewTask = (props) => {
 		start: taskStartTime,
 		endTime: taskEndTime,
 		state: "incomplete",
-		// urgency: taskUrgency,
+		urgency: urgencyTitle,
 	};
 	const submitEventHandler = (event) => {
 		event.preventDefault();
@@ -133,7 +138,7 @@ const NewTask = (props) => {
 							unmount: { y: 25 },
 						}}
 						value={taskIcon}
-						onSelect={iconEventHandler}
+						onSelect={urgencyEventHandler}
 					>
 						<Option>Material Tailwind HTML</Option>
 						<Option>Material Tailwind React</Option>
@@ -147,18 +152,18 @@ const NewTask = (props) => {
 							mount: { y: 0 },
 							unmount: { y: 25 },
 						}}
-						value={taskUrgency}
 						onChange={urgencyEventHandler}
 					>
 						{urgencyModes.map((item) => (
-							<Option title={item.title} onClick={urgencyTitleIdentifier(title)}>
-								<svg className={`${item.color} h-5 w-5 inline`}>
+							<Option
+							>
+								{/* <svg className={`${item.color} h-5 w-5 inline`}>
 									<circle
 										cx="10"
 										cy="10"
 										r="8"
 									/>
-								</svg>
+								</svg> */}
 								<span className="pl-2">{item.title}</span>
 							</Option>
 						))}
@@ -204,7 +209,6 @@ const NewTask = (props) => {
 						color="blue-gray"
 						className="flex items-center gap-3 pt-2 pb-2 w-1/2 justify-center"
 					>
-
 						Add Task
 						<img
 							src={submitIcon}
