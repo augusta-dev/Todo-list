@@ -84,8 +84,8 @@ const NewTask = (props) => {
 		icon: taskIcon,
 		date: taskDate,
 		duration: taskDuration,
-		start: taskStartTime,
-		endTime: taskEndTime,
+		start: taskStartTime.slice(0, 5) + taskStartTime.slice(8, 11),
+		endTime: taskEndTime.slice(0, 5) + taskEndTime.slice(8, 11),
 		state: "incomplete",
 		urgency: taskUrgency,
 	};
