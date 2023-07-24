@@ -43,21 +43,14 @@ const NewTask = (props) => {
 	const [displayedEndTime, setDisplayedEndTime] = useState("");
 	const [taskEndTime, setTaskEndTime] = useState("");
 
-	// const [taskUrgency, setTaskUrgency] = useState("");
-	const [urgencyTitle, setUrgencyTitle] = useState("");
+	const [taskUrgency, setTaskUrgency] = useState("");
+	// const [urgencyTitle, setUrgencyTitle] = useState("");
 
-	const urgencyEventHandler = (event) => {
-		const selectedUrgency = urgencyModes.find(
-			(item) => item.title === event.target.value,
-		);
-		console.log(event.target.value)
-		setUrgencyTitle(selectedUrgency.title);
-		// console.log(selectedUrgency)
-	};
-
-	// const urgencyValueWriter = (event) => {	
-	// 	setTaskUrgency(event.target.value);
+	// const urgencyEventHandler = (event) => {
+	// 	const selectedUrgency = event.target.value;
+	// 	setUrgencyTitle(selectedUrgency);
 	// };
+
 	const startTimeEventHandler = (event) => {
 		setDisplayedStartTime(event.target.value);
 		const taskStart = event.target.value;
@@ -94,10 +87,11 @@ const NewTask = (props) => {
 		start: taskStartTime,
 		endTime: taskEndTime,
 		state: "incomplete",
-		urgency: urgencyTitle,
+		urgency: taskUrgency,
 	};
 	const submitEventHandler = (event) => {
 		event.preventDefault();
+		console.log(taskData);
 		if (taskData.name && taskData.date) {
 			props.onAddTask(taskData);
 			props.onSubmit();
@@ -138,10 +132,14 @@ const NewTask = (props) => {
 							unmount: { y: 25 },
 						}}
 						value={taskIcon}
-						onSelect={urgencyEventHandler}
+						onChange={setTaskIcon}
 					>
-						<Option>Material Tailwind HTML</Option>
-						<Option>Material Tailwind React</Option>
+						<Option value={"Material Tailwind HTML"}>
+							Material Tailwind HTML
+						</Option>
+						<Option value={"Material Tailwind HTM"}>
+							Material Tailwind React
+						</Option>
 						<Option>Material Tailwind Vue</Option>
 						<Option>Material Tailwind Angular</Option>
 						<Option>Material Tailwind Svelte</Option>
@@ -152,19 +150,25 @@ const NewTask = (props) => {
 							mount: { y: 0 },
 							unmount: { y: 25 },
 						}}
-						onChange={urgencyEventHandler}
+						value={taskUrgency}
+						onChange={setTaskUrgency}
 					>
-						{urgencyModes.map((item) => (
+						{urgencyModes.map((item, index) => (
 							<Option
+								key={index}
+								value={item.title}
+								className="flex flex-wrap h-full"
 							>
-								{/* <svg className={`${item.color} h-5 w-5 inline`}>
-									<circle
-										cx="10"
-										cy="10"
-										r="8"
-									/>
-								</svg> */}
-								<span className="pl-2">{item.title}</span>
+								<div className="">
+									<svg className={`${item.color} h-5 w-5 inline`}>
+										<circle
+											cx="10"
+											cy="10"
+											r="8"
+										/>
+									</svg>
+									<p className=" inline pl-2">{item.title}</p>
+								</div>
 							</Option>
 						))}
 					</Select>
