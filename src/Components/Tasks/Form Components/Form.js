@@ -6,6 +6,7 @@ import DateAndDurationSelector from "./DateAndDurationSelector";
 import TimeSelector from "./TimeSelector";
 import { Button } from "@material-tailwind/react";
 import submitIcon from "../../../Assets/upload.png";
+import { ErrorModal } from "../UI/ErrorModal";
 
 const Form = (props) => {
 	const [taskDuration, setTaskDuration] = useState("");
@@ -28,6 +29,11 @@ const Form = (props) => {
 		state: props.taskStateSetter("incomplete"),
 		urgency: taskUrgency,
 	};
+	const [errorModalVisibility, setErrorModalVisibility] = useState(false);
+	const displayErrorModal = () => {
+		setErrorModalVisibility(!errorModalVisibility);
+		console.log(errorModalVisibility);
+	}
 	const submitEventHandler = (event) => {
 		event.preventDefault();
 		console.log(taskData);
@@ -44,15 +50,18 @@ const Form = (props) => {
 			setDisplayedEndTime("");
 			setDisplayedStartTime("");
 		} else {
-			setTaskName("Please fill the form completely");
+			displayErrorModal();
 		}
 	};
+	
+	
 	return (
 		<form
 			action=""
 			onSubmit={submitEventHandler}
 			className={`${props.className} pb-5`}
 		>
+			<ErrorModal onClick={displayErrorModal} className={`${errorModalVisibility ? "block" : "hidden"}`} visibility={errorModalVisibility}></ErrorModal>
 			<div>
 				<div className="grid grid-cols-1 gap-2 pb-3">
 					<NameSelector
