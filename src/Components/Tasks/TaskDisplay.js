@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import TaskItem from "./TaskItem";
 import NewTask from "./NewTask";
-import broom from "../../Assets/broom.png";
+import broom from "../../Assets/Icons/broom (1).png";
 import icon from "../../Assets/plus.png";
 import Form from "./Form Components/Form";
 
@@ -163,7 +163,7 @@ const TaskDisplay = (props) => {
 						name={taskItem.name}
 						duration={taskItem.duration}
 						endTime={taskItem.endTime}
-						icon={broom}
+						icon={taskItem.icon}
 						state={taskItem.state}
 						taskStateSetter={setTaskState}
 						onDelete={() => deleteItemHandler(taskItem)}
