@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Select, Option } from "@material-tailwind/react";
 
-const IconSelector = () => {
+const IconSelector = (props) => {
 	const [taskIcon, setTaskIcon] = useState("");
 	const iconEventHandler = (event) => {
 		setTaskIcon(event.target.value);
+        props.taskIconSetter(event.target.value);
 	};
 	return (
 		<>
