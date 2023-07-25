@@ -1,18 +1,30 @@
+import { useState } from "react";
 import "./TaskItem.css";
 import { Checkbox } from "@material-tailwind/react";
-import broom from "../../Assets/broom.png";
 import bin from "../../Assets/trash.png";
-import bg from "../../Assets/bitmap.png";
 
 const TaskItem = (props) => {
 	const deleteHandler = () => {
 		props.onDelete(props.id);
 	};
+	const [isChecked, setIsChecked] = useState(false);
+	const checkEventHandler = () => {
+		setIsChecked(!isChecked);
+		if(isChecked){
+			props.taskStateSetter("Completed");
+		}
+		console.log(props.state)
+	};
 
 	return (
-		<div className={`${props.className} w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3`}>
+		<div
+			className={`${props.className} w-full h-16 rounded-xl flex flex-wrap align-center justify-start self-center shadow-md task-item mb-3`}
+		>
 			<div className="w-1/12">
-				<Checkbox className="w-6 h-6 bg-transparent border-2 border-black relative " />
+				<Checkbox
+					className="w-6 h-6 bg-transparent border-2 border-black relative "
+					onChange={checkEventHandler}
+				/>
 			</div>
 
 			<div className="ml-1 self-center font-arimo w-7/12">
@@ -28,13 +40,9 @@ const TaskItem = (props) => {
 
 				<div>
 					<p className="font-roboto text-base -mt-1">
-						<span className=" text-yellow-900">
-							{props.start}
-						</span>{" "}
+						<span className=" text-yellow-900">{props.start}</span>{" "}
 						-{" "}
-						<span className="text-green-900">
-							{props.endTime}
-						</span>
+						<span className="text-green-900">{props.endTime}</span>
 					</p>
 				</div>
 			</div>

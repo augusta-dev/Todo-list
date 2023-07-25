@@ -9,6 +9,7 @@ import Form from "./Form Components/Form";
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const currentDate = new Date().toISOString().slice(0, 10);
+	const [taskState, setTaskState] = useState("incomplete");
 
 	const [TaskItems, setTaskItem] = useState([
 		{
@@ -28,7 +29,7 @@ const TaskDisplay = (props) => {
 			endTime: "14:00 PM",
 			date: "2023-07-23",
 			icon: broom,
-			state: "incomplete",
+			state: taskState,
 		},
 		{
 			name: "Clean the gutters",
@@ -37,7 +38,7 @@ const TaskDisplay = (props) => {
 			id: 3,
 			endTime: "14:00 PM",
 			icon: broom,
-			state: "incomplete",
+			state: taskState,
 		},
 		{
 			name: "Clean the gutters today too",
@@ -47,7 +48,7 @@ const TaskDisplay = (props) => {
 			endTime: "14:00 PM",
 			date: "2023-07-23",
 			icon: broom,
-			state: "incomplete",
+			state: taskState,
 			urgency: "Priority",
 		},
 		{
@@ -151,6 +152,7 @@ const TaskDisplay = (props) => {
 				onAddTask={addTaskHandler}
 				className={`${isVisible ? "block" : "hidden"}`}
 				onSubmit={changeVisibility}
+				taskStateSetter={setTaskState}
 			></Form>
 
 			{displayedTasks.map((taskItem) => {
@@ -162,7 +164,8 @@ const TaskDisplay = (props) => {
 						duration={taskItem.duration}
 						endTime={taskItem.endTime}
 						icon={broom}
-						state={props.state}
+						state={taskItem.state}
+						taskStateSetter={setTaskState}
 						onDelete={() => deleteItemHandler(taskItem)}
 					/>
 				);
