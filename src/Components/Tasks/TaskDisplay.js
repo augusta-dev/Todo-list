@@ -77,6 +77,9 @@ const TaskDisplay = (props) => {
 		setTaskItem((prevTasks) => {
 			const taskIndex = task.id;
 			const tasks = prevTasks.filter((task) => task.id !== taskIndex);
+			setDisplayedTasks(() => {
+				return tasks;
+			});
 			return tasks;
 		});
 	};
