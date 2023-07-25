@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { Select, Option } from "@material-tailwind/react";
 
-const UrgencyModeSelector = () => {
-	const [taskUrgency, setTaskUrgency] = useState("");
+const UrgencyModeSelector = (props) => {
+	const urgencyEventHandler = (event) => {
+		props.taskUrgencySetter(event.target.value);
+	};
 	const urgencyModes = [
 		{
 			title: "Not A Priority",
@@ -21,8 +22,8 @@ const UrgencyModeSelector = () => {
 					mount: { y: 0 },
 					unmount: { y: 25 },
 				}}
-				value={taskUrgency}
-				onChange={setTaskUrgency}
+				value={props.setTaskUrgency}
+				onChange={props.taskUrgencySetter}
 			>
 				{urgencyModes.map((item, index) => (
 					<Option

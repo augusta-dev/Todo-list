@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { Select, Option } from "@material-tailwind/react";
 
 const IconSelector = (props) => {
-	const [taskIcon, setTaskIcon] = useState("");
 	const iconEventHandler = (event) => {
-		setTaskIcon(event.target.value);
-        props.taskIconSetter(event.target.value);
+		props.taskIconSetter(event.target.value);
 	};
 	return (
 		<>
@@ -15,8 +12,8 @@ const IconSelector = (props) => {
 					mount: { y: 0 },
 					unmount: { y: 25 },
 				}}
-				value={taskIcon}
-				onChange={setTaskIcon}
+				value={props.setTaskIcon}
+				onChange={props.taskIconSetter}
 			>
 				<Option value={"Material Tailwind HTML"}>
 					Material Tailwind HTML

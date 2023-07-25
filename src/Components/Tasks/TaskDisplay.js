@@ -4,6 +4,7 @@ import TaskItem from "./TaskItem";
 import NewTask from "./NewTask";
 import broom from "../../Assets/broom.png";
 import icon from "../../Assets/plus.png";
+import Form from "./Form Components/Form";
 
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
@@ -146,11 +147,11 @@ const TaskDisplay = (props) => {
 				/>
 				<p className="text-gray-900 pl-3 -mt-1">Add New</p>
 			</div>
-			<NewTask
+			<Form
 				onAddTask={addTaskHandler}
 				className={`${isVisible ? "block" : "hidden"}`}
 				onSubmit={changeVisibility}
-			></NewTask>
+			></Form>
 
 			{displayedTasks.map((taskItem) => {
 				return (

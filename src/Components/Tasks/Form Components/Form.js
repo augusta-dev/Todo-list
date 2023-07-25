@@ -7,7 +7,7 @@ import TimeSelector from "./TimeSelector";
 import { Button } from "@material-tailwind/react";
 import submitIcon from "../../../Assets/upload.png";
 
-const Form =  (props) => {
+const Form = (props) => {
 	const [taskDuration, setTaskDuration] = useState("");
 	const [taskDate, setTaskDate] = useState("");
 	const [taskName, setTaskName] = useState("");
@@ -17,8 +17,6 @@ const Form =  (props) => {
 	const [displayedStartTime, setDisplayedStartTime] = useState("");
 	const [displayedEndTime, setDisplayedEndTime] = useState("");
 	const [taskUrgency, setTaskUrgency] = useState("");
-
-
 
 	const taskData = {
 		name: taskName,
@@ -42,33 +40,57 @@ const Form =  (props) => {
 			setTaskDuration("");
 			setTaskName("");
 			setTaskIcon("");
+			setTaskUrgency("")
 			setDisplayedEndTime("");
 			setDisplayedStartTime("");
 		} else {
 			setTaskName("Please fill the form completely");
 		}
 	};
-    return (
-        <form
+	return (
+		<form
 			action=""
 			onSubmit={submitEventHandler}
 			className={`${props.className} pb-5`}
 		>
 			<div>
 				<div className="grid grid-cols-1 gap-2 pb-3">
-					<NameSelector taskNameSetter={setTaskName}></NameSelector>
+					<NameSelector
+						taskNameSetter={setTaskName}
+						setTaskName={taskName}
+					></NameSelector>
 				</div>
 				<div className="grid grid-cols-2 gap-2 pb-3">
-					<IconSelector taskIconSetter={setTaskIcon}></IconSelector>
-					<UrgencyModeSelector ></UrgencyModeSelector>
+					<IconSelector
+						taskIconSetter={setTaskIcon}
+						setTaskIcon={taskIcon}
+					></IconSelector>
+					<UrgencyModeSelector
+						taskUrgencySetter={setTaskUrgency}
+						setTaskUrgency={taskUrgency}
+					></UrgencyModeSelector>
 				</div>
 
 				<div className="grid grid-cols-2 gap-2 pb-3">
-					<DateAndDurationSelector taskDurationSetter={setTaskDuration} taskDateSetter={setTaskDate}></DateAndDurationSelector>
+					<DateAndDurationSelector
+						taskDurationSetter={setTaskDuration}
+						taskDateSetter={setTaskDate}
+						setTaskDate={taskDate}
+						setTaskDuration={taskDuration}
+					></DateAndDurationSelector>
 				</div>
 
 				<div className="grid grid-cols-2 gap-2 pb-3">
-					<TimeSelector taskDurationValue={taskDuration} taskDateValue={taskDate}></TimeSelector>
+					<TimeSelector
+						taskDurationValue={taskDuration}
+						taskDateValue={taskDate}
+						taskStartTimeSetter={setTaskStartTime}
+						taskEndTimeSetter={setTaskEndTime}
+						displayedStartTimeSetter={setDisplayedStartTime}
+						displayedEndTimeSetter={setDisplayedEndTime}
+						setDisplayedStartTime={displayedStartTime}
+						setDisplayedEndTime={displayedEndTime}
+					></TimeSelector>
 				</div>
 				<div className="flex flex-wrap items-center w-full justify-center">
 					<Button
@@ -87,6 +109,6 @@ const Form =  (props) => {
 				</div>
 			</div>
 		</form>
-    )
-}
+	);
+};
 export default Form;

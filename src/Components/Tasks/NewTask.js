@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import submitIcon from "../../Assets/upload.png";
+import Form from "./Form Components/Form";
 const NewTask = (props) => {
 	const urgencyModes = [
 		{
@@ -109,120 +110,7 @@ const NewTask = (props) => {
 	};
 
 	return (
-		<form
-			action=""
-			onSubmit={submitEventHandler}
-			className={`${props.className} pb-5`}
-		>
-			<div>
-				<div className="grid grid-cols-1 gap-2 pb-3">
-					<Input
-						type="text"
-						label="Name of task"
-						id="name"
-						value={taskName}
-						onChange={nameEventHandler}
-					/>
-				</div>
-				<div className="grid grid-cols-2 gap-2 pb-3">
-					<Select
-						label="Select Icon"
-						animate={{
-							mount: { y: 0 },
-							unmount: { y: 25 },
-						}}
-						value={taskIcon}
-						onChange={setTaskIcon}
-					>
-						<Option value={"Material Tailwind HTML"}>
-							Material Tailwind HTML
-						</Option>
-						<Option value={"Material Tailwind HTM"}>
-							Material Tailwind React
-						</Option>
-						<Option>Material Tailwind Vue</Option>
-						<Option>Material Tailwind Angular</Option>
-						<Option>Material Tailwind Svelte</Option>
-					</Select>
-					<Select
-						label="Select Urgency"
-						animate={{
-							mount: { y: 0 },
-							unmount: { y: 25 },
-						}}
-						value={taskUrgency}
-						onChange={setTaskUrgency}
-					>
-						{urgencyModes.map((item, index) => (
-							<Option
-								key={index}
-								value={item.title}
-								className="flex flex-wrap h-full"
-							>
-								<div className="">
-									<svg className={`${item.color} h-5 w-5 inline`}>
-										<circle
-											cx="10"
-											cy="10"
-											r="8"
-										/>
-									</svg>
-									<p className=" inline pl-2">{item.title}</p>
-								</div>
-							</Option>
-						))}
-					</Select>
-				</div>
-
-				<div className="grid grid-cols-2 gap-2 pb-3">
-					<Input
-						type="date"
-						label="Due Date"
-						id="name"
-						value={taskDate}
-						onChange={dateEventHandler}
-					/>
-					<Input
-						type="number"
-						label="Duration"
-						id="name"
-						value={taskDuration}
-						onChange={durationEventHandler}
-					/>
-				</div>
-
-				<div className="grid grid-cols-2 gap-2 pb-3">
-					<Input
-						type="time"
-						label="Start Time"
-						id="name"
-						value={displayedStartTime}
-						onChange={startTimeEventHandler}
-					/>
-					<Input
-						type="time"
-						label="End Time"
-						id="name"
-						value={displayedEndTime}
-					/>
-				</div>
-				<div className="flex flex-wrap items-center w-full justify-center">
-					<Button
-						type="submit"
-						variant="outlined"
-						color="blue-gray"
-						className="flex items-center gap-3 pt-2 pb-2 w-1/2 justify-center"
-					>
-						Add Task
-						<img
-							src={submitIcon}
-							alt="metamask"
-							className="h-6 w-6"
-						/>
-					</Button>
-				</div>
-			</div>
-		</form>
+		<Form></Form>
 	);
 };
 export default NewTask;
