@@ -1,13 +1,11 @@
 import { Input } from "@material-tailwind/react";
+import { useEffect } from "react";
 const TimeSelector = (props) => {
 	const startTimeEventHandler = (event) => {
-		props.displayedStartTimeSetter(event.target.value);
-		const taskStart = event.target.value;
-		const newDate = new Date(`${props.taskDateValue}, ${taskStart}`);
-		props.taskStartTimeSetter(newDate.toLocaleTimeString("en-US"));
-		endTimeEventHandler(newDate);
+		props.displayedStartTimeSetter(event.target.value);	
 	};
-	const endTimeEventHandler = (date) => {
+	
+	const endTimeEventHandler = (date, durationValue) => {
 		const endTimeDate = new Date(
 			date.getTime() +
 				parseInt(props.taskDurationValue, 10) * 60 * 60 * 1000,
@@ -23,11 +21,19 @@ const TimeSelector = (props) => {
 		// Set the calculated end time to be displayed
 		props.displayedEndTimeSetter(endTimeString);
 		const endHours =
-			date.getHours() + parseInt(props.taskDurationValue, 10);
+			date.getHours() + parseInt(durationValue, 10);
 		const endDate = new Date(date);
 		endDate.setHours(endHours);
 		props.taskEndTimeSetter(endDate.toLocaleTimeString("en-US"));
 	};
+	let taskStart = '';
+	useEffect(() => {
+		taskStart = props.setDisplayedStartTime;
+		const newDate = new Date(`${props.taskDateValue}, ${taskStart}`);
+		props.taskStartTimeSetter(newDate.toLocaleTimeString("en-US"));
+		endTimeEventHandler(newDate, props.taskDurationValue);
+	}
+	, [props.setDisplayedStartTime, props.taskDurationValue])
 	return (
 		<>
 			<Input
