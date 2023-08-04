@@ -10,7 +10,6 @@ const TaskDisplay = (props) => {
 	const classes = "" + props.className;
 	const currentDate = new Date().toISOString().slice(0, 10);
 	const [taskState, setTaskState] = useState("incomplete");
-
 	const [TaskItems, setTaskItem] = useState([
 		{
 			name: "Clean the gutters completed",
@@ -60,7 +59,33 @@ const TaskDisplay = (props) => {
 			icon: broom,
 			state: "Completed",
 		},
-	]);
+	])
+// 	const [TaskItems, setTaskItem] = useState(taskItems);
+//   useEffect(() => {
+//     const taskList = JSON.parse(localStorage.getItem("taskList"));
+//     if (taskList) {
+//       setTaskItem(taskList);
+//     }
+//   }, []);
+
+//   const setLocalStorage = (TaskItems) => {
+//     localStorage.setItem("taskList", JSON.stringify(TaskItems));
+//   };
+
+//   useEffect(() => {
+//     setLocalStorage(TaskItems);
+//   }, [TaskItems]);
+	// const [TaskItems, setTaskItem] = useState(taskItems);
+
+	// const setLocalStorage = (TaskItems) => {
+	// 	localStorage.setItem("taskList", JSON.stringify(TaskItems));
+	// } 
+	// let taskList = JSON.parse(localStorage.getItem("taskList"));
+	// setTaskItem(taskList);
+	// useEffect(() => {
+	// 	setLocalStorage(TaskItems);
+	// }, [TaskItems]);
+	// setTaskItem(localStorage.getItem("taskList"));
 
 	const [isVisible, setVisibility] = useState(false);
 	const changeVisibility = () => {
@@ -69,9 +94,6 @@ const TaskDisplay = (props) => {
 	const addTaskHandler = (enteredTask) => {
 		setTaskItem((prevTasks) => {
 			const tasks = [...prevTasks, { ...enteredTask, id: Math.random() }];
-			setDisplayedTasks(() => {
-				return tasks;
-			});
 			return tasks;
 		});
 	};
@@ -79,55 +101,23 @@ const TaskDisplay = (props) => {
 		setTaskItem((prevTasks) => {
 			const taskIndex = task.id;
 			const tasks = prevTasks.filter((task) => task.id !== taskIndex);
-			setDisplayedTasks(() => {
-				return tasks;
-			});
 			return tasks;
 		});
 	};
-	const [displayedTasks, setDisplayedTasks] = useState([TaskItems]);
-	const adjustDisplay = (title) => {
-		if (title === "All Tasks" || title === "") {
-			setTaskItem((prevTasks) => {
-				const tasks = prevTasks;
-				setDisplayedTasks((prevDisplayedTasks) => {
-					return tasks;
-				});
-				return prevTasks;
-			});
-		} else if (title === "For Today") {
-			setTaskItem((prevTasks) => {
-				const tasks = prevTasks.filter(
-					(task) => task.date === currentDate,
-				);
-				setDisplayedTasks((prevDisplayedTasks) => {
-					return tasks;
-				});
-				return prevTasks;
-			});
-		} else if (title === "Priorities") {
-			setTaskItem((prevTasks) => {
-				const tasks = prevTasks.filter(
-					(task) => task.urgency === "Priority",
-				);
-				setDisplayedTasks((prevDisplayedTasks) => {
-					return tasks;
-				});
-				return prevTasks;
-			});
+	const displayedTasks = (() => {
+		if (props.onDisplay === "All Tasks" || props.onDisplay === "") {
+		  return TaskItems;
+		} else if (props.onDisplay === "For Today") {
+		  return TaskItems.filter((task) => task.date === currentDate);
+		} else if (props.onDisplay === "Priorities") {
+		  return TaskItems.filter((task) => task.urgency === "Priority");
 		} else {
-			setTaskItem((prevTasks) => {
-				const tasks = prevTasks.filter((task) => task.state === title);
-				setDisplayedTasks((prevDisplayedTasks) => {
-					return tasks;
-				});
-				return prevTasks;
-			});
+		  return TaskItems.filter((task) => task.state === props.onDisplay);
 		}
-	};
-	useEffect(() => {
-		adjustDisplay(props.onDisplay);
-	}, [props.onDisplay]);
+	})();
+	// useEffect(() => {
+	// 	adjustDisplay(props.onDisplay);
+	// }, [props.onDisplay]);
 
 	return (
 		<div className={classes}>
