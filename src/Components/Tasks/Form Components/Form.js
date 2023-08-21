@@ -36,7 +36,7 @@ const Form = (props) => {
 	}
 	const submitEventHandler = (event) => {
 		event.preventDefault();
-		console.log(taskData);
+		
 		if (taskData.name && taskData.date) {
 			props.onAddTask(taskData);
 			props.onSubmit();

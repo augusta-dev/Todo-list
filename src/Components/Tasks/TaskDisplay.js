@@ -98,7 +98,6 @@ const TaskDisplay = (props) => {
 					: task,
 			),
 		);
-		console.log(TaskItems);
 	};
 	const reupdateStateHandler = (taskItem) => {
 		setTaskItem((prevTasks) =>
@@ -108,7 +107,6 @@ const TaskDisplay = (props) => {
 					: task,
 			),
 		);
-		console.log(TaskItems);
 	};
 	const taskCtx = useContext(MomentaryTaskContext);
 
@@ -122,13 +120,7 @@ const TaskDisplay = (props) => {
 			.getDate()
 			.toString()
 			.padStart(2, "0")}`;
-		// const currentYear = currentDate.getFullYear();
-		// let currentMonth = currentDate.getMonth() + 1;
-		// if (currentMonth < 10) {
-		// 	currentMonth = `0${currentMonth}`;
-		// }
-		// const currentDay = currentDate.getDate();
-		// const currentDateString = `${currentYear}-${currentMonth}-${currentDay}`;
+		
 		let currentHour = currentDate.getHours();
 		if (currentHour > 12) {
 			currentHour -= 12;
@@ -140,9 +132,7 @@ const TaskDisplay = (props) => {
 				parseInt(taskItem.start.split(":")[0]) <= currentHour &&
 				parseInt(taskItem.endTime.split(":")[0]) >= currentHour,
 		);
-		// const dateIndex = momentaryTask["start"];
-		// console.log(dateIndex);
-		console.log(momentaryTask);
+		
 		if (momentaryTask) {
 			taskCtx.setMomentaryTask({
 				name: momentaryTask.name,
@@ -152,11 +142,10 @@ const TaskDisplay = (props) => {
 				icon: momentaryTask.icon,
 				state: momentaryTask.state,
 			});
-			console.log(taskCtx);
+			
 		}
 	}, [TaskItems]);
-	console.log(taskCtx);
-
+	
 	return (
 		<div className={classes}>
 			<Typography

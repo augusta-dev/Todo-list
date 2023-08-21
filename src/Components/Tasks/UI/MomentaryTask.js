@@ -5,10 +5,9 @@ import MomentaryTaskContext from "./MomentaryTaskContext";
 
 const MomentaryTask = () => {
 	const taskCtx = useContext(MomentaryTaskContext);
-	console.log(taskCtx);
+	// console.log(taskCtx);
 	useEffect(() => {
 		const name = taskCtx.name;
-    console.log(name);
 	}, [taskCtx]);
 
 	return (

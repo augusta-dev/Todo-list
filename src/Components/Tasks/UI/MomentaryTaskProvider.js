@@ -11,7 +11,6 @@ const defaultTask = {
 };
 const setTaskDetails = (state, action) => {
 	if (action.type === "SET_TASK_DETAILS") {
-		console.log(action.item.name);
 		const currentTaskName = action.item.name;
 		return {
 			name: currentTaskName,
@@ -41,7 +40,7 @@ const MomentaryTaskProvider = (props) => {
 		state: task.state,
 		setMomentaryTask: setMomentaryTaskHandler,
 	};
-	console.log(taskContext);
+	
 	return (
 		<MomentaryTaskContext.Provider value={taskContext}>
 			{props.children}
