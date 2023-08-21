@@ -2,7 +2,6 @@ import React from "react";
 import './ComplexNavbar.css';
 import {
   Navbar,
-  MobileNav,
   Typography,
   Button,
   Menu,
@@ -11,42 +10,35 @@ import {
   MenuItem,
   Avatar,
   Collapse,
-  Card,
   IconButton,
 } from "@material-tailwind/react";
 import {
   CubeTransparentIcon,
   UserCircleIcon,
   CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
-  PowerIcon,
-  RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
-const iconn = '../Assets/scheduling.png'
+import tickIcon from "../Assets/Icons/tick.png";
+import task from "../Assets/Icons/clipboard.png";
+import today from '../Assets/scheduling.png';
+import done from '../Assets/Icons/completed.png';
  
 // profile menu component
 const profileMenuItems = [
   {
     label: "My Tasks",
-    icon: iconn,
+    icon: task,
   },
   {
     label: "For Today",
-    icon: '../Assets/scheduling.png',
+    icon: today,
   },
   {
     label: "Completed",
-    icon: '../Assets/scheduling.png',
+    icon: done,
   },
-  {
-    label: "Help",
-    icon: '../Assets/scheduling.png',
-  },
+  
 ];
  
 function ProfileMenu() {
@@ -64,9 +56,9 @@ function ProfileMenu() {
           <Avatar
             variant="circular"
             size="sm"
-            alt="tania andrew"
-            className="border border-blue-500 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            alt="Check"
+            className="border border-blue-500 p-0.5 "
+            src={tickIcon}
           />
           <ChevronDownIcon
             strokeWidth={2.5}
@@ -89,7 +81,7 @@ function ProfileMenu() {
                   : ""
               }`}
           >
-              <img src={icon}  />
+              <img src={icon} className="h-5 w-5"  />
               <Typography
                 as="span"
                 variant="small"
@@ -105,105 +97,18 @@ function ProfileMenu() {
     </Menu>
   );
 }
- 
-// nav list menu
-// const navListMenuItems = [
-//   {
-//     title: "@material-tailwind/html",
-//     description:
-//       "Learn how to use @material-tailwind/html, packed with rich components and widgets.",
-//   },
-//   {
-//     title: "@material-tailwind/react",
-//     description:
-//       "Learn how to use @material-tailwind/react, packed with rich components for React.",
-//   },
-//   {
-//     title: "Material Tailwind PRO",
-//     description:
-//       "A complete set of UI Elements for building faster websites in less time.",
-//   },
-// ];
- 
-// function NavListMenu() {
-//   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
- 
-//   const triggers = {
-//     onMouseEnter: () => setIsMenuOpen(true),
-//     onMouseLeave: () => setIsMenuOpen(false),
-//   };
- 
-//   const renderItems = navListMenuItems.map(({ title, description }) => (
-//     <a href="#" key={title}>
-//       <MenuItem>
-//         <Typography variant="h6" color="blue-gray" className="mb-1">
-//           {title}
-//         </Typography>
-//         <Typography variant="small" color="gray" className="font-normal">
-//           {description}
-//         </Typography>
-//       </MenuItem>
-//     </a>
-//   ));
- 
-//   return (
-//     <React.Fragment>
-//       <Menu open={isMenuOpen} handler={setIsMenuOpen}>
-//         <MenuHandler>
-//           <Typography as="a" href="#" variant="small" className="font-normal">
-//             <MenuItem
-//               {...triggers}
-//               className="hidden items-center gap-2 text-blue-gray-900 lg:flex lg:rounded-full"
-//             >
-//               <Square3Stack3DIcon className="h-[18px] w-[18px]" /> Pages{" "}
-//               <ChevronDownIcon
-//                 strokeWidth={2}
-//                 className={`h-3 w-3 transition-transform ${
-//                   isMenuOpen ? "rotate-180" : ""
-//                 }`}
-//               />
-//             </MenuItem>
-//           </Typography>
-//         </MenuHandler>
-//         <MenuList
-//           {...triggers}
-//           className="hidden w-[36rem] grid-cols-7 gap-3 overflow-visible lg:grid"
-//         >
-//           <Card
-//             color="blue"
-//             shadow={false}
-//             variant="gradient"
-//             className="col-span-3 grid h-full w-full place-items-center rounded-md"
-//           >
-//             <RocketLaunchIcon strokeWidth={1} className="h-28 w-28" />
-//           </Card>
-//           <ul className="col-span-4 flex w-full flex-col gap-1">
-//             {renderItems}
-//           </ul>
-//         </MenuList>
-//       </Menu>
-//       <MenuItem className="flex items-center gap-2 text-blue-gray-900 lg:hidden">
-//         <Square3Stack3DIcon className="h-[18px] w-[18px]" /> Pages{" "}
-//       </MenuItem>
-//       <ul className="ml-6 flex w-full flex-col gap-1 lg:hidden">
-//         {renderItems}
-//       </ul>
-//     </React.Fragment>
-//   );
-// }
- 
-// nav list component
+
 const navListItems = [
   {
     label: "Account",
     icon: UserCircleIcon,
   },
   {
-    label: "Blocks",
+    label: "Tasks",
     icon: CubeTransparentIcon,
   },
   {
-    label: "Docs",
+    label: "Done",
     icon: CodeBracketSquareIcon,
   },
 ];
@@ -250,7 +155,7 @@ export default function ComplexNavbar() {
           href="#"
           className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
         >
-          Material Tailwind
+          Todo List
         </Typography>
         <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
           <NavList />
