@@ -36,8 +36,7 @@ const Sidebar = (props) => {
 					onClick={displaySelectedTasks}
 				/>
 			))}
-		
-			<MomentaryTask />
+				<MomentaryTask />
 		</div>
 	);
 };

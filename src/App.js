@@ -24,16 +24,16 @@ function App(props) {
 			<div className="w-full absolute z-10">
 				<ComplexNavbar />
 			</div>
-
-			<div className="flex w-screen flex-wrap content-center justify-center h-auto">
-				<Sidebar onSelection={setSelectedTasks} />
-				<MomentaryTaskProvider>
+			<MomentaryTaskProvider>
+				<div className="flex w-screen flex-wrap content-center justify-center h-auto">
+					<Sidebar onSelection={setSelectedTasks} />
 					<TaskDisplay
 						className="w-3/4 lg:w-5/6  pl-5 pr-6 pt-28"
 						onDisplay={selectedTasks}
-					 />s
-				</MomentaryTaskProvider>
-			</div>
+					/>
+					
+				</div>
+			</MomentaryTaskProvider>
 		</div>
 	);
 	// }

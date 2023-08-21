@@ -1,33 +1,35 @@
 import { useReducer } from "react";
 import MomentaryTaskContext from "./MomentaryTaskContext";
+const defaultTask = {
+	name: "",
+	start: "",
+	duration: 2,
+	endTime: "",
+	date: "",
+	icon: "",
+	state: "",
+};
+const setTaskDetails = (state, action) => {
+	if (action.type === "SET_TASK_DETAILS") {
+		console.log(action.item.name);
+		const currentTaskName = action.item.name;
+		return {
+			name: currentTaskName,
+			start: action.item.start,
+			endTime: action.item.endTime,
+			date: action.item.date,
+			icon: action.item.icon,
+			state: action.item.state,
+		};
+	}
+	return defaultTask;
+};
 const MomentaryTaskProvider = (props) => {
-	const defaultTask = {
-		name: "",
-		start: "",
-		duration: 2,
-		endTime: "",
-		date: "",
-		icon: "",
-		state: "",
-	};
-	const setTaskDetails = (state, action) => {
-		if (action.type === "SET_TASK_DETAILS") {
-            return {
-              name: action.item.name,
-              start: action.item.start,
-              endTime: action.item.endTime,
-              date: action.item.date,
-              icon: action.item.icon,
-              state: action.item.state,
-            };
-          }
-          return state;
-	};
 	const [task, dispatchTaskDetails] = useReducer(setTaskDetails, defaultTask);
-	
-    const setMomentaryTaskHandler = (item) => {
-        dispatchTaskDetails({ type: "SET_TASK_DETAILS", item: item }); 
-      };
+
+	const setMomentaryTaskHandler = (item) => {
+		dispatchTaskDetails({ type: "SET_TASK_DETAILS", item: item });
+	};
 
 	const taskContext = {
 		name: task.name,
@@ -37,8 +39,9 @@ const MomentaryTaskProvider = (props) => {
 		date: task.date,
 		icon: task.icon,
 		state: task.state,
-        setMomentaryTask: setMomentaryTaskHandler,
+		setMomentaryTask: setMomentaryTaskHandler,
 	};
+	console.log(taskContext);
 	return (
 		<MomentaryTaskContext.Provider value={taskContext}>
 			{props.children}

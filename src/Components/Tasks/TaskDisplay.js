@@ -114,20 +114,34 @@ const TaskDisplay = (props) => {
 
 	useEffect(() => {
 		const currentDate = new Date();
-		const currentYear = currentDate.getFullYear();
-		let currentMonth = currentDate.getMonth() + 1;
-		if (currentMonth < 10) {
-			currentMonth = `0${currentMonth}`;
+		const currentDateString = `${currentDate.getFullYear()}-${(
+			currentDate.getMonth() + 1
+		)
+			.toString()
+			.padStart(2, "0")}-${currentDate
+			.getDate()
+			.toString()
+			.padStart(2, "0")}`;
+		// const currentYear = currentDate.getFullYear();
+		// let currentMonth = currentDate.getMonth() + 1;
+		// if (currentMonth < 10) {
+		// 	currentMonth = `0${currentMonth}`;
+		// }
+		// const currentDay = currentDate.getDate();
+		// const currentDateString = `${currentYear}-${currentMonth}-${currentDay}`;
+		let currentHour = currentDate.getHours();
+		if (currentHour > 12) {
+			currentHour -= 12;
 		}
-		const currentDay = currentDate.getDate();
-		const currentDateString = `${currentYear}-${currentMonth}-${currentDay}`;
-		const currentHour = currentDate.getHours();
+
 		const momentaryTask = TaskItems.find(
 			(taskItem) =>
 				taskItem.date === currentDateString &&
-				parseInt(taskItem.start) <= currentHour &&
-				parseInt(taskItem.endTime) >= currentHour,
+				parseInt(taskItem.start.split(":")[0]) <= currentHour &&
+				parseInt(taskItem.endTime.split(":")[0]) >= currentHour,
 		);
+		// const dateIndex = momentaryTask["start"];
+		// console.log(dateIndex);
 		console.log(momentaryTask);
 		if (momentaryTask) {
 			taskCtx.setMomentaryTask({
@@ -138,8 +152,10 @@ const TaskDisplay = (props) => {
 				icon: momentaryTask.icon,
 				state: momentaryTask.state,
 			});
+			console.log(taskCtx);
 		}
-	}, [TaskItems, taskCtx, taskCtx.setMomentaryTask]);
+	}, [TaskItems]);
+	console.log(taskCtx);
 
 	return (
 		<div className={classes}>
