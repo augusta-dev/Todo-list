@@ -1,3 +1,5 @@
+
+
 import { useState } from "react";
 import "./TaskItem.css";
 import { Checkbox } from "@material-tailwind/react";
@@ -5,16 +7,18 @@ import bin from "../../Assets/trash.png";
 
 const TaskItem = (props) => {
 	const deleteHandler = () => {
-		props.onDelete(props.id);
+		props.onDelete();
 	};
 	const [isChecked, setIsChecked] = useState(false);
 	const checkEventHandler = () => {
 		setIsChecked(!isChecked);
-		if (isChecked) {
-			props.taskStateSetter("Completed");
+		if(!isChecked){
+			props.checkHandler();
+		} else{
+			props.unCheckHandler();
 		}
-		console.log(props.state);
 	};
+
 
 	return (
 		<div
@@ -35,7 +39,7 @@ const TaskItem = (props) => {
 							srcset=""
 							className="h-5 w-5"
 						/>
-						<p className="pl-1 text-lg -mt-1 sm:text-base">{props.name}</p>
+						<p className={`${props.state === "Completed" ? "text-green-900" : "text-black"} pl-1 text-lg -mt-1 sm:text-base`}>{props.name}</p>
 					</div>
 
 					<div>

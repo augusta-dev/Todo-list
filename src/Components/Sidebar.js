@@ -1,7 +1,8 @@
 import { Typography } from "@material-tailwind/react";
 import "./Sidebar.css";
 import TaskClasses from "./TaskClasses";
-import MomentaryTask from "./MomentaryTask";
+import MomentaryTask from "./Tasks/UI/MomentaryTask";
+import MomentaryTaskProvider from "./Tasks/UI/MomentaryTaskProvider";
 const Sidebar = (props) => {
 	const sideBarItems = [
 		{
@@ -35,6 +36,7 @@ const Sidebar = (props) => {
 					onClick={displaySelectedTasks}
 				/>
 			))}
+		
 			<MomentaryTask />
 		</div>
 	);

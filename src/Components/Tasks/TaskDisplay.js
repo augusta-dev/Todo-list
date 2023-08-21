@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Typography } from "@material-tailwind/react";
 import TaskItem from "./TaskItem";
-import NewTask from "./NewTask";
 import broom from "../../Assets/Icons/broom (1).png";
 import icon from "../../Assets/plus.png";
 import Form from "./Form Components/Form";
+import MomentaryTaskContext from "./UI/MomentaryTaskContext";
 
 const TaskDisplay = (props) => {
 	const classes = "" + props.className;
-	const currentDate = new Date().toISOString().slice(0, 10);
-	const [taskState, setTaskState] = useState("incomplete");
+	const curentDate = new Date().toISOString().slice(0, 10);
 	const [TaskItems, setTaskItem] = useState([
 		{
 			name: "Clean the gutters completed",
@@ -28,7 +27,7 @@ const TaskDisplay = (props) => {
 			endTime: "14:00 PM",
 			date: "2023-07-23",
 			icon: broom,
-			state: taskState,
+			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters",
@@ -37,7 +36,7 @@ const TaskDisplay = (props) => {
 			id: 3,
 			endTime: "14:00 PM",
 			icon: broom,
-			state: taskState,
+			state: "incomplete",
 		},
 		{
 			name: "Clean the gutters today too",
@@ -47,7 +46,7 @@ const TaskDisplay = (props) => {
 			endTime: "14:00 PM",
 			date: "2023-07-23",
 			icon: broom,
-			state: taskState,
+			state: "incomplete",
 			urgency: "Priority",
 		},
 		{
@@ -59,33 +58,7 @@ const TaskDisplay = (props) => {
 			icon: broom,
 			state: "Completed",
 		},
-	])
-// 	const [TaskItems, setTaskItem] = useState(taskItems);
-//   useEffect(() => {
-//     const taskList = JSON.parse(localStorage.getItem("taskList"));
-//     if (taskList) {
-//       setTaskItem(taskList);
-//     }
-//   }, []);
-
-//   const setLocalStorage = (TaskItems) => {
-//     localStorage.setItem("taskList", JSON.stringify(TaskItems));
-//   };
-
-//   useEffect(() => {
-//     setLocalStorage(TaskItems);
-//   }, [TaskItems]);
-	// const [TaskItems, setTaskItem] = useState(taskItems);
-
-	// const setLocalStorage = (TaskItems) => {
-	// 	localStorage.setItem("taskList", JSON.stringify(TaskItems));
-	// } 
-	// let taskList = JSON.parse(localStorage.getItem("taskList"));
-	// setTaskItem(taskList);
-	// useEffect(() => {
-	// 	setLocalStorage(TaskItems);
-	// }, [TaskItems]);
-	// setTaskItem(localStorage.getItem("taskList"));
+	]);
 
 	const [isVisible, setVisibility] = useState(false);
 	const changeVisibility = () => {
@@ -104,20 +77,69 @@ const TaskDisplay = (props) => {
 			return tasks;
 		});
 	};
-	const displayedTasks = (() => {
+
+	let displayedTasks = (() => {
 		if (props.onDisplay === "All Tasks" || props.onDisplay === "") {
-		  return TaskItems;
+			return TaskItems;
 		} else if (props.onDisplay === "For Today") {
-		  return TaskItems.filter((task) => task.date === currentDate);
+			return TaskItems.filter((task) => task.date === curentDate);
 		} else if (props.onDisplay === "Priorities") {
-		  return TaskItems.filter((task) => task.urgency === "Priority");
+			return TaskItems.filter((task) => task.urgency === "Priority");
 		} else {
-		  return TaskItems.filter((task) => task.state === props.onDisplay);
+			return TaskItems.filter((task) => task.state === props.onDisplay);
 		}
 	})();
-	// useEffect(() => {
-	// 	adjustDisplay(props.onDisplay);
-	// }, [props.onDisplay]);
+	// const [isChecked, setIsChecked] = useState(false);
+	const updateStateHandler = (taskItem) => {
+		setTaskItem((prevTasks) =>
+			prevTasks.map((task) =>
+				task.id === taskItem.id
+					? { ...task, state: "Completed" }
+					: task,
+			),
+		);
+		console.log(TaskItems);
+	};
+	const reupdateStateHandler = (taskItem) => {
+		setTaskItem((prevTasks) =>
+			prevTasks.map((task) =>
+				task.id === taskItem.id
+					? { ...task, state: "incomplete" }
+					: task,
+			),
+		);
+		console.log(TaskItems);
+	};
+	const taskCtx = useContext(MomentaryTaskContext);
+
+	useEffect(() => {
+		const currentDate = new Date();
+		const currentYear = currentDate.getFullYear();
+		let currentMonth = currentDate.getMonth() + 1;
+		if (currentMonth < 10) {
+			currentMonth = `0${currentMonth}`;
+		}
+		const currentDay = currentDate.getDate();
+		const currentDateString = `${currentYear}-${currentMonth}-${currentDay}`;
+		const currentHour = currentDate.getHours();
+		const momentaryTask = TaskItems.find(
+			(taskItem) =>
+				taskItem.date === currentDateString &&
+				parseInt(taskItem.start) <= currentHour &&
+				parseInt(taskItem.endTime) >= currentHour,
+		);
+		console.log(momentaryTask);
+		if (momentaryTask) {
+			taskCtx.setMomentaryTask({
+				name: momentaryTask.name,
+				start: momentaryTask.start,
+				endTime: momentaryTask.endTime,
+				id: momentaryTask.id,
+				icon: momentaryTask.icon,
+				state: momentaryTask.state,
+			});
+		}
+	}, [TaskItems, taskCtx, taskCtx.setMomentaryTask]);
 
 	return (
 		<div className={classes}>
@@ -142,7 +164,6 @@ const TaskDisplay = (props) => {
 				onAddTask={addTaskHandler}
 				className={`${isVisible ? "block" : "hidden"}`}
 				onSubmit={changeVisibility}
-				taskStateSetter={setTaskState}
 			></Form>
 
 			{displayedTasks.map((taskItem) => {
@@ -155,7 +176,8 @@ const TaskDisplay = (props) => {
 						endTime={taskItem.endTime}
 						icon={taskItem.icon}
 						state={taskItem.state}
-						taskStateSetter={setTaskState}
+						checkHandler={() => updateStateHandler(taskItem)}
+						unCheckHandler={() => reupdateStateHandler(taskItem)}
 						onDelete={() => deleteItemHandler(taskItem)}
 					/>
 				);
