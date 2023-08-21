@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/todo-list/static/css/main.fc3eb4c9.css",
-    "main.js": "/todo-list/static/js/main.324319b5.js",
+    "main.css": "/todo-list/static/css/main.2363cc96.css",
+    "main.js": "/todo-list/static/js/main.09eacd5d.js",
     "static/media/CormorantGaramond-Regular.ttf": "/todo-list/static/media/CormorantGaramond-Regular.4114a151797af532cace.ttf",
     "static/media/Arimo-VariableFont_wght.ttf": "/todo-list/static/media/Arimo-VariableFont_wght.4ddb268fb129e0f4d61e.ttf",
     "static/media/RobotoSlab-VariableFont_wght.ttf": "/todo-list/static/media/RobotoSlab-VariableFont_wght.677d14da87bce007211b.ttf",
@@ -22,6 +22,7 @@
     "static/media/pets.png": "/todo-list/static/media/pets.88f347f0e1dd1e5d0c7e.png",
     "static/media/search.png": "/todo-list/static/media/search.3a608aca6f4d314714c4.png",
     "static/media/hammer.png": "/todo-list/static/media/hammer.6132c50ef1ff24386b71.png",
+    "static/media/completed.png": "/todo-list/static/media/completed.0340bf75710941988f72.png",
     "static/media/broom.png": "/todo-list/static/media/broom.9e4d5d61f9a93f39decc.png",
     "static/media/book.png": "/todo-list/static/media/book.dca7b7f81fafb17ccc6b.png",
     "static/media/trash.png": "/todo-list/static/media/trash.0ca56cd30fe2c169ff28.png",
@@ -37,14 +38,16 @@
     "static/media/dumbbell.png": "/todo-list/static/media/dumbbell.051066ff1494748284a4.png",
     "static/media/travel-bag.png": "/todo-list/static/media/travel-bag.49a0034a9d97d7c8433f.png",
     "static/media/graduation-hat.png": "/todo-list/static/media/graduation-hat.6650c95498652a8c87f4.png",
+    "static/media/clipboard.png": "/todo-list/static/media/clipboard.63bf270ce06c27f992c1.png",
     "static/media/envelope.png": "/todo-list/static/media/envelope.9cccc3ed7660e56b77fb.png",
+    "static/media/tick.png": "/todo-list/static/media/tick.14245cc13d7415f94334.png",
     "static/media/bitmap.svg": "/todo-list/static/media/bitmap.a7bea09abb0195cecaa7.svg",
     "index.html": "/todo-list/index.html",
-    "main.fc3eb4c9.css.map": "/todo-list/static/css/main.fc3eb4c9.css.map",
-    "main.324319b5.js.map": "/todo-list/static/js/main.324319b5.js.map"
+    "main.2363cc96.css.map": "/todo-list/static/css/main.2363cc96.css.map",
+    "main.09eacd5d.js.map": "/todo-list/static/js/main.09eacd5d.js.map"
   },
   "entrypoints": [
-    "static/css/main.fc3eb4c9.css",
-    "static/js/main.324319b5.js"
+    "static/css/main.2363cc96.css",
+    "static/js/main.09eacd5d.js"
   ]
 }
