@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/todo-list/static/css/main.2363cc96.css",
-    "main.js": "/todo-list/static/js/main.09eacd5d.js",
+    "main.js": "/todo-list/static/js/main.4f2bca04.js",
     "static/media/CormorantGaramond-Regular.ttf": "/todo-list/static/media/CormorantGaramond-Regular.4114a151797af532cace.ttf",
     "static/media/Arimo-VariableFont_wght.ttf": "/todo-list/static/media/Arimo-VariableFont_wght.4ddb268fb129e0f4d61e.ttf",
     "static/media/RobotoSlab-VariableFont_wght.ttf": "/todo-list/static/media/RobotoSlab-VariableFont_wght.677d14da87bce007211b.ttf",
@@ -44,10 +44,10 @@
     "static/media/bitmap.svg": "/todo-list/static/media/bitmap.a7bea09abb0195cecaa7.svg",
     "index.html": "/todo-list/index.html",
     "main.2363cc96.css.map": "/todo-list/static/css/main.2363cc96.css.map",
-    "main.09eacd5d.js.map": "/todo-list/static/js/main.09eacd5d.js.map"
+    "main.4f2bca04.js.map": "/todo-list/static/js/main.4f2bca04.js.map"
   },
   "entrypoints": [
     "static/css/main.2363cc96.css",
-    "static/js/main.09eacd5d.js"
+    "static/js/main.4f2bca04.js"
   ]
 }
